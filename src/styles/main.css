@@ -9,3 +9,8 @@ body,
 html.dark {
   background: #121212;
 }
+
+/* element-plus reset */
+.el-aside, .el-main {
+  padding: 0!important;
+}
