@@ -4,6 +4,6 @@ import 'vue'
 declare module 'vue' {
   // 设置 标签中 的自定义属性，避免类型检测报错。
   interface HTMLAttributes {
-    className?: unknown
+    className?: unknown,
   }
 }

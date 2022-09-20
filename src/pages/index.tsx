@@ -1,10 +1,14 @@
-import { ElButton } from 'element-plus'
-
 export default defineComponent({
   name: 'HomePage',
   setup () {
     return () => (
-      <ElButton>test</ElButton>
+      <route lang="yaml">
+        component: ~/layouts/index.tsx
+        meta:
+          title: 首页
+          icon: i-iconoir:home
+          order: 1
+      </route>
     )
   }
 })
