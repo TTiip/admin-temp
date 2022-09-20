@@ -5,6 +5,7 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -118,7 +119,8 @@ export default defineConfig({
       dirs: [
         './src/composables'
       ],
-      vueTemplate: true
+      vueTemplate: true,
+      resolvers: [ElementPlusResolver()]
     }),
 
     // https://github.com/antfu/vite-plugin-components
@@ -128,7 +130,8 @@ export default defineConfig({
       // 所以 建议手动引入ts、tsx后缀结尾的文件。
       extensions: ['vue', 'js', 'jsx'],
       directoryAsNamespace: true,
-      dts: true
+      dts: true,
+      resolvers: [ElementPlusResolver()]
     }),
 
     // https://github.com/antfu/unocss
