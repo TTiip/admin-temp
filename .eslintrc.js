@@ -1,6 +1,8 @@
 module.exports = {
   extends: ['@antfu'],
   rules: {
+    // 关闭 防止使用未知的DOM属性(目前就是解决 class 报错 需要强制使用 className)
+    'react/no-unknown-property': 'off',
     // JSX、TSX 函数组件必须需要函数名 (可以在JSX、TSX中使用 'name' 属性定义组件名)
     'react/display-name': 'off',
     // 参数尽在 需要 () 包裹 时才包裹
