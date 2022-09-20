@@ -8,7 +8,7 @@ export default defineComponent({
     return () => (
       <div class="text-gray-700 dark:text-gray-200 flex h-screen">
         <ElAside class="row-span-2 flex flex-col b-0 b-r-1 b-r-zinc-200 dark:b-r-zinc-700 shadow-md z-3">
-          <header class="h-12 flex items-center shadow-sm z-1 px-3 cursor-pointer">
+          <header class="h-12 flex items-center shadow-md z-3 px-3 cursor-pointer">
             <img class="w-8 mx-1" src="/logo.png" />
             <div class="relative overflow-hidden">
               <Transition enter-active-class="absolute" duration={ 300 } leave-active-class="absolute">
@@ -16,7 +16,7 @@ export default defineComponent({
               </Transition>
             </div>
           </header>
-          <Sidebar class="row-span-2 flex-1" />
+          <Sidebar class="row-span-2 flex-1 b-0 b-r-1 b-r-zinc-200 dark:b-r-zinc-700 shadow-md z-3" />
         </ElAside>
 
         <ElMain class="flex-1 grid grid-rows-[3rem_34px_auto] relative overflow-x-hidden">

@@ -1,4 +1,4 @@
-import { ElIcon, ElMenuItem, ElMenuItemGroup, ElSubMenu } from 'element-plus'
+import { ElMenuItem, ElMenuItemGroup, ElSubMenu } from 'element-plus'
 
 export default defineComponent({
   name: 'ElSubMenuBox',
@@ -6,7 +6,7 @@ export default defineComponent({
     const ElSubMenuSlot = {
       title: () => (
         <>
-          <ElIcon><location /></ElIcon>
+          {/* <ElIcon><location /></ElIcon> */}
           <span>Navigator One</span>
         </>
       )
