@@ -1,4 +1,4 @@
-import { KeepAlive, Transition } from 'vue'
+import { Transition } from 'vue'
 import { ElAside, ElMain } from 'element-plus'
 import Sidebar from '~/layouts/Sidebar/index'
 import Footer from '~/components/Footer.vue'
@@ -21,19 +21,17 @@ export default defineComponent({
         </ElAside>
 
         <ElMain class="flex-1 grid grid-rows-[3rem_34px_auto] relative overflow-x-hidden">
-          {/* <Navigation v-model:isCollapse="isCollapse" />
-          <TagsView /> */}
-          {/* v-slots={{ Component, route }} */}
-          <router-view>
+          112233
+          <br />
+          <Footer />
+          {/* <router-view v-slots={{ Component, route }}>
             <Transition mode="out-in" name="main" appear>
               <KeepAlive>
-                {/* <component is={ Component } key={ route.path } /> */}
+                <component is={ Component } key={ route.path } />
                 112233
-                <br />
-                <Footer />
               </KeepAlive>
             </Transition>
-          </router-view>
+          </router-view> */}
         </ElMain>
       </div>
     )

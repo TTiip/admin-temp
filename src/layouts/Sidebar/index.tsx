@@ -1,4 +1,5 @@
 import { ElMenu } from 'element-plus'
+import menuData from './menuData'
 import SidebarItem from '~/layouts/Sidebar/SidebarItem'
 
 export default defineComponent({
@@ -10,7 +11,7 @@ export default defineComponent({
         collapse={ false }
         class="b-r-none! overflow-auto text-gray-700 dark:text-gray-200"
       >
-        <SidebarItem />
+        <SidebarItem menuData={menuData} />
       </ElMenu>
     )
   }

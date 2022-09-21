@@ -1,8 +1,10 @@
-import { ElMenuItem, ElMenuItemGroup, ElSubMenu } from 'element-plus'
+import { ElMenuItem, ElSubMenu } from 'element-plus'
 
 export default defineComponent({
   name: 'ElSubMenuBox',
-  setup () {
+  props: ['menuData'],
+  setup (props) {
+    console.log(props, 'props')
     const ElSubMenuSlot = {
       title: () => (
         <>
@@ -11,24 +13,19 @@ export default defineComponent({
         </>
       )
     }
-    const ElMenuItemGroupSlot = {
-      title: () => (
-        <>
-          <span>Group One</span>
-        </>
+
+    const renderSlots = () => {
+      return (
+        <ElSubMenu
+          index="1"
+          v-slots={ ElSubMenuSlot }
+        >
+          <ElMenuItem index="1-1">item one</ElMenuItem>
+          <ElMenuItem index="1-2">item two</ElMenuItem>
+        </ElSubMenu>
       )
     }
 
-    return () => (
-      <ElSubMenu
-        index="1"
-        v-slots={ ElSubMenuSlot }
-      >
-        <ElMenuItemGroup v-slots={ ElMenuItemGroupSlot }>
-          <ElMenuItem index="1-1">item one</ElMenuItem>
-          <ElMenuItem index="1-2">item two</ElMenuItem>
-        </ElMenuItemGroup>
-      </ElSubMenu>
-    )
+    return () => renderSlots()
   }
 })
