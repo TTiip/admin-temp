@@ -1,6 +1,7 @@
 import { KeepAlive, Transition } from 'vue'
 import { ElAside, ElMain } from 'element-plus'
 import Sidebar from '~/layouts/Sidebar/index'
+import Footer from '~/components/Footer.vue'
 
 export default defineComponent({
   name: 'HomePage',
@@ -28,6 +29,8 @@ export default defineComponent({
               <KeepAlive>
                 {/* <component is={ Component } key={ route.path } /> */}
                 112233
+                <br />
+                <Footer />
               </KeepAlive>
             </Transition>
           </router-view>
