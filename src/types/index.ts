@@ -1,11 +1,11 @@
 interface MenuItemType {
-	index?: string
+	index: string
 	title?: string
-	showGroup?: boolean
-	GroupName?: string
-	icon?: string
-	to?: string
-	children?: MenuItemType[]
+	showGroup: boolean
+	GroupName: string
+	icon: string
+	to: string
+	children: MenuItemType[]
 }
 
 export type {
