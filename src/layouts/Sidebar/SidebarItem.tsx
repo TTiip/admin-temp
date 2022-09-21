@@ -6,7 +6,7 @@ export default defineComponent({
     const ElSubMenuSlot = {
       title: () => (
         <>
-          {/* <ElIcon><location /></ElIcon> */}
+          <i class="i-carbon:3d-curve-auto-colon mr-6px" />
           <span>Navigator One</span>
         </>
       )
