@@ -1,6 +1,6 @@
 import type {
   GetLyric
-} from '~/interface'
+} from '~/types'
 
 const apiList = {
   // 获取歌曲的歌词
