@@ -8,7 +8,7 @@ export default defineComponent({
       <ElMenu
         default-active="1"
         collapse={ false }
-        class="b-r-none overflow-auto text-gray-700 dark:text-gray-200"
+        class="b-r-none! overflow-auto text-gray-700 dark:text-gray-200"
       >
         <SidebarItem />
       </ElMenu>

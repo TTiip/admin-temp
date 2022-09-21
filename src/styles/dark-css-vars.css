@@ -1,0 +1,10 @@
+/* unocss 使用实例 */
+/* bg-[var(--el-bg-color)] */
+
+html:root {
+  --el-bg-color: skyblue;
+}
+
+html.dark {
+  --el-bg-color: #ff6700;
+}

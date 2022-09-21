@@ -6,7 +6,7 @@ export default defineComponent({
   name: 'HomePage',
   setup () {
     return () => (
-      <div class="text-gray-700 dark:text-gray-200 flex h-screen">
+      <div class="flex h-screen">
         <ElAside class="row-span-2 flex flex-col b-0 b-r-1 b-r-zinc-200 dark:b-r-zinc-700 shadow-md z-3">
           <header class="h-12 flex items-center shadow-md z-3 px-3 cursor-pointer">
             <img class="w-8 mx-1" src="/logo.png" />
