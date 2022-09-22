@@ -1,31 +1,50 @@
 import { ElMenuItem, ElSubMenu } from 'element-plus'
+import type { PropType } from 'vue'
+import type { MenuItemType } from '~/types'
 
 export default defineComponent({
   name: 'ElSubMenuBox',
-  props: ['menuData'],
+  props: {
+    menuData: {
+      type: Array as PropType<MenuItemType[]>,
+      require: true
+    }
+  },
   setup (props) {
-    console.log(props, 'props')
-    const ElSubMenuSlot = {
-      title: () => (
-        <>
-          <i class="i-carbon:3d-curve-auto-colon mr-6px" />
-          <span>Navigator One</span>
-        </>
-      )
-    }
+    const renderSlots = (data: MenuItemType[]) =>
+      data.map((item: MenuItemType) => {
+        const slots = {
+          title: () => (
+            <>
+              <i class={`${item.icon} m-6px`}/>
+              <span>{item.title}</span>
+            </>
+          )
+        }
 
-    const renderSlots = () => {
-      return (
-        <ElSubMenu
-          index="1"
-          v-slots={ ElSubMenuSlot }
-        >
-          <ElMenuItem index="1-1">item one</ElMenuItem>
-          <ElMenuItem index="1-2">item two</ElMenuItem>
-        </ElSubMenu>
-      )
-    }
+        if (item.children && item.children.length) {
+          return (
+            <ElSubMenu
+              key={ item.index }
+              index={ item.index }
+              v-slots={ slots }
+            >
+              { renderSlots(item.children) }
+            </ElSubMenu>
+          )
+        } else {
+          return (
+            <ElMenuItem
+              key={ item.index }
+              index={ item.index }
+            >
+              <i class={`${item.icon} m-6px`}/>
+              <span>{item.title}</span>
+            </ElMenuItem>
+          )
+        }
+      })
 
-    return () => renderSlots()
+    return () => renderSlots(props.menuData!)
   }
 })
