@@ -1,6 +1,7 @@
 import { ElMenu, ElMenuItem, ElSubMenu } from 'element-plus'
 import type { PropType } from 'vue'
 import type { MenuItemType } from '~/types'
+import './index.css'
 
 export default defineComponent({
   name: 'ElMenuBox',
