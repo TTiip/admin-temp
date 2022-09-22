@@ -49,7 +49,7 @@ const data: MenuItemType[] = [
   {
     index: '/3',
     title: '组织架构',
-    icon: 'i-iconoir:bookmark-book',
+    icon: 'i-iconoir:network-right',
     children: [
       {
         index: '/3-1',
@@ -62,7 +62,7 @@ const data: MenuItemType[] = [
   {
     index: '/4',
     title: '数据字典',
-    icon: 'i-iconoir:settings',
+    icon: 'i-iconoir:bookmark-book',
     children: [
       {
         index: '/4-1',
