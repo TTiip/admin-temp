@@ -61,6 +61,7 @@ export default defineComponent({
         <ElMenu
           { ...menuAttrs }
           default-active={ props.defaultActive! }
+          router={ props.router }
           collapse={ false }
           class="b-r-none! overflow-auto text-gray-700 dark:text-gray-200"
         >
