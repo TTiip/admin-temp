@@ -28,7 +28,7 @@ export default defineComponent({
           const slots = {
             title: () => (
               <>
-                <i class={`${item.icon} m-6px`}/>
+                { item.icon ? <i class={`${item.icon} m-6px text-16px`}/> : '' }
                 <span>{item.title}</span>
               </>
             )
@@ -50,7 +50,7 @@ export default defineComponent({
                 key={ item.index }
                 index={ item.index }
               >
-                <i class={`${item.icon} m-6px`}/>
+                { item.icon ? <i class={`${item.icon} m-6px text-16px`}/> : '' }
                 <span>{item.title}</span>
               </ElMenuItem>
             )
