@@ -1,5 +1,5 @@
 import { ElMenu } from 'element-plus'
-import menuData from './menuData'
+import menuData from '../../mock/menuData'
 import SidebarItem from '~/layouts/Sidebar/SidebarItem'
 
 export default defineComponent({
