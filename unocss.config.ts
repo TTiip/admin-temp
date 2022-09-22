@@ -34,9 +34,14 @@ export default defineConfig({
         mono: 'DM Mono'
       }
     })
-  ]
+  ],
   // transformers: [
   //   transformerDirectives(),
   //   transformerVariantGroup(),
   // ],
+  // 预加载 class 对应的样式 (配置安全列表)
+  safelist: [
+    'i-iconoir:home', 'i-iconoir:settings', 'i-iconoir:google-docs', 'i-iconoir:bookmark-book', 'i-iconoir:network-right', 'i-iconoir:open-new-window', 'i-iconoir:align-right',
+    ...['blue-500', 'teal-500', 'indigo-500', 'rose-500'].map(i => `group-hover:bg-${i} text-${i}`).join(' ').split(' ')
+  ]
 })
