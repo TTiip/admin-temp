@@ -2,42 +2,36 @@ import type { MenuItemType } from '~/types/index'
 
 const data: MenuItemType[] = [
   {
-    index: '1',
-    title: '1',
+    index: '/',
+    title: '首页',
     icon: 'i-carbon:3d-curve-auto-colon',
-    path: '',
     children: [
       {
         index: '1 - 1',
         title: '1 - 1',
         icon: 'i-carbon:3d-curve-auto-colon',
-        path: '',
         children: [
           {
             index: '1 - 1 - 1',
             title: '1 - 1 - 1',
             icon: 'i-carbon:3d-curve-auto-colon',
-            path: '',
             children: []
           },
           {
             index: '1 - 1 - 2',
             title: '1 - 1 - 2',
             icon: 'i-carbon:3d-curve-auto-colon',
-            path: '',
             children: [
               {
                 index: '1 - 1 - 1 - 1',
                 title: '1 - 1 - 1 - 1',
                 icon: 'i-carbon:3d-curve-auto-colon',
-                path: '',
                 children: []
               },
               {
-                index: '/',
+                index: '1 - 1 - 1 - 2',
                 title: '1 - 1 - 1 - 2',
                 icon: 'i-carbon:3d-curve-auto-colon',
-                path: '',
                 children: []
               }
             ]
@@ -48,7 +42,6 @@ const data: MenuItemType[] = [
         index: '1 - 2',
         title: '1 - 2',
         icon: 'i-carbon:3d-curve-auto-colon',
-        path: '',
         children: []
       }
     ]
