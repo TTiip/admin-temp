@@ -1,11 +1,15 @@
 import { Transition } from 'vue'
 import { ElAside, ElMain } from 'element-plus'
+import menuData from '~/mock/menuData'
 import Sidebar from '~/layouts/Sidebar/index'
 import Footer from '~/components/Footer.vue'
 
 export default defineComponent({
   name: 'HomePage',
   setup () {
+    const route = useRoute()
+    console.log(route.path)
+
     return () => (
       <div class="flex h-screen">
         <ElAside class="row-span-2 flex flex-col b-0 b-r-1 b-r-zinc-200 dark:b-r-zinc-700 shadow-md z-3">
@@ -17,7 +21,7 @@ export default defineComponent({
               </Transition>
             </div>
           </header>
-          <Sidebar class="row-span-2 flex-1 b-0 b-r-1 b-r-zinc-200 dark:b-r-zinc-700 shadow-md z-3" />
+          <Sidebar defaultActive={ route.path } menuData={ menuData } class="row-span-2 flex-1 b-0 b-r-1 b-r-zinc-200 dark:b-r-zinc-700 shadow-md z-3" />
         </ElAside>
 
         <ElMain class="flex-1 grid grid-rows-[3rem_34px_auto] relative overflow-x-hidden">

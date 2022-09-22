@@ -34,7 +34,7 @@ const data: MenuItemType[] = [
                 children: []
               },
               {
-                index: '1 - 1 - 1 - 2',
+                index: '/',
                 title: '1 - 1 - 1 - 2',
                 icon: 'i-carbon:3d-curve-auto-colon',
                 path: '',
