@@ -50,8 +50,10 @@ export default defineComponent({
                 key={ item.index }
                 index={ item.index }
               >
-                { item.icon ? <i class={`${item.icon} m-6px text-16px`}/> : '' }
-                <span>{item.title}</span>
+                <>
+                  { item.icon ? <i class={`${item.icon} m-6px text-16px`}/> : '' }
+                  <span>{item.title}</span>
+                </>
               </ElMenuItem>
             )
           }
