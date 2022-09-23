@@ -1,11 +1,11 @@
 export default defineComponent({
-  name: 'IndexPage',
+  name: 'RolePermissionPage',
   setup () {
     return () => (
       <route lang="yaml">
         component: ~/layouts/index.tsx
         meta:
-          title: 首页
+          title: 角色权限
           showId: true
       </route>
     )

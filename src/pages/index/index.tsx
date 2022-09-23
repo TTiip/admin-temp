@@ -1,10 +1,10 @@
 export default defineComponent({
-  name: 'Index',
+  name: 'IndexComponent',
   setup () {
     return () => (
       <div>
         <h1>
-				Index
+          Index
         </h1>
       </div>
     )

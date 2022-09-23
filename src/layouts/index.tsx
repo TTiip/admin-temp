@@ -2,7 +2,7 @@ import { KeepAlive, Transition } from 'vue'
 import { ElAside, ElMain } from 'element-plus'
 import type { RouteRecordRaw } from 'vue-router'
 import menuData from '~/mock/menuData'
-import Sidebar from '~/layouts/Sidebar/index'
+import Sidebar from '~/layouts/sidebar/index'
 import Footer from '~/components/Footer.vue'
 
 export default defineComponent({

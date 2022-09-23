@@ -41,7 +41,7 @@ const data: MenuItemType[] = [
     ]
   },
   {
-    index: '/2',
+    index: '/ArticleManage',
     title: '文章管理',
     icon: 'i-iconoir:google-docs',
     children: []
@@ -52,7 +52,7 @@ const data: MenuItemType[] = [
     icon: 'i-iconoir:network-right',
     children: [
       {
-        index: '/3-1',
+        index: '/Department',
         title: '部门管理',
         icon: '',
         children: []
@@ -65,13 +65,13 @@ const data: MenuItemType[] = [
     icon: 'i-iconoir:bookmark-book',
     children: [
       {
-        index: '/4-1',
+        index: '/CodeGroup',
         title: '代码组',
         icon: '',
         children: []
       },
       {
-        index: '/4-2',
+        index: '/GlobalCode',
         title: '全局代码',
         icon: '',
         children: []
@@ -84,19 +84,19 @@ const data: MenuItemType[] = [
     icon: 'i-iconoir:settings',
     children: [
       {
-        index: '/5-1',
+        index: '/SystemSetting',
         title: '系统设置',
         icon: '',
         children: []
       },
       {
-        index: '/5-2',
+        index: '/UserManage',
         title: '用户管理',
         icon: '',
         children: []
       },
       {
-        index: '/5-3',
+        index: '/RolePermission',
         title: '角色权限',
         icon: '',
         children: []

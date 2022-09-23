@@ -1,11 +1,11 @@
 export default defineComponent({
-  name: 'IndexPage',
+  name: 'UserManagePage',
   setup () {
     return () => (
       <route lang="yaml">
         component: ~/layouts/index.tsx
         meta:
-          title: 首页
+          title: 用户管理
           showId: true
       </route>
     )

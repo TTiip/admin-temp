@@ -1,11 +1,11 @@
 export default defineComponent({
-  name: 'IndexPage',
+  name: 'GlobalCodePage',
   setup () {
     return () => (
       <route lang="yaml">
         component: ~/layouts/index.tsx
         meta:
-          title: 首页
+          title: 全局代码
           showId: true
       </route>
     )
