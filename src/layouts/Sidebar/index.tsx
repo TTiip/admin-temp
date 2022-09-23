@@ -1,4 +1,4 @@
-import { ElMenu, ElMenuItem, ElSubMenu } from 'element-plus'
+import { ElIcon, ElMenu, ElMenuItem, ElSubMenu } from 'element-plus'
 import type { PropType } from 'vue'
 import type { MenuItemType } from '~/types'
 import './index.css'
@@ -25,11 +25,14 @@ export default defineComponent({
     return () => {
       const renderSlots = (data: MenuItemType[]) =>
         data.map((item: MenuItemType) => {
+          console.log(1111)
           const slots = {
             title: () => (
               <>
-                { item.icon ? <i class={`${item.icon} text-18px`}/> : '' }
-                <span class="indent-6px">{item.title}</span>
+                <ElIcon>
+                  <i class={`${item.icon} text-18px`}/>
+                </ElIcon>
+                <span>{item.title}</span>
               </>
             )
           }
@@ -51,8 +54,10 @@ export default defineComponent({
                 index={ item.index }
               >
                 <>
-                  { item.icon ? <i class={`${item.icon} text-18px`}/> : '' }
-                  <span class="indent-6px">{item.title}</span>
+                  <ElIcon>
+                    <i class={`${item.icon} text-18px`}/>
+                  </ElIcon>
+                  <span>{item.title}</span>
                 </>
               </ElMenuItem>
             )
