@@ -1,14 +1,15 @@
-import { Transition } from 'vue'
+import { KeepAlive, Transition } from 'vue'
 import { ElAside, ElMain } from 'element-plus'
+import type { RouteRecordRaw } from 'vue-router'
 import menuData from '~/mock/menuData'
 import Sidebar from '~/layouts/Sidebar/index'
 import Footer from '~/components/Footer.vue'
 
 export default defineComponent({
-  name: 'HomePage',
+  name: 'Layouts',
   setup () {
     const route = useRoute()
-    console.log(route.path)
+    console.log('route.path', route.path)
 
     return () => (
       <div class="flex h-screen">
@@ -25,17 +26,16 @@ export default defineComponent({
         </ElAside>
 
         <ElMain class="flex-1 grid grid-rows-[3rem_34px_auto] relative overflow-x-hidden">
-          112233
-          <br />
           <Footer />
-          {/* <router-view v-slots={{ Component, route }}>
-            <Transition mode="out-in" name="main" appear>
-              <KeepAlive>
-                <component is={ Component } key={ route.path } />
-                112233
-              </KeepAlive>
-            </Transition>
-          </router-view> */}
+          <router-view v-slots={{
+            default: ({ Component, route }: { Component: any; route: RouteRecordRaw }) => (
+              <Transition mode="out-in" name="main" appear={ true }>
+                <KeepAlive>
+                  <Component key={ route.path } />
+                </KeepAlive>
+              </Transition>
+            )
+          }} />
         </ElMain>
       </div>
     )

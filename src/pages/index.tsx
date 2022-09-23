@@ -6,8 +6,7 @@ export default defineComponent({
         component: ~/layouts/index.tsx
         meta:
           title: 首页
-          icon: i-iconoir:home
-          order: 1
+          showId: true
       </route>
     )
   }
