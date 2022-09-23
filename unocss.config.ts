@@ -4,8 +4,6 @@ import {
   presetIcons,
   presetUno,
   presetWebFonts
-  // transformerDirectives,
-  // transformerVariantGroup,
 } from 'unocss'
 
 export default defineConfig({
@@ -16,9 +14,19 @@ export default defineConfig({
     [/^s-(\d+)$/, ([, d]) => ({ margin: `${d as any / 4}rem` })],
     [/^p-(\d+)$/, match => ({ padding: `${match[1] as any / 4}rem` })]
   ],
+  theme: {
+    colors: {
+      primary: {
+        DEFAULT: 'var(--el-color-primary)',
+        // eslint-disable-next-line no-sequences
+        ...Array(9).fill('').reduce((a, _, index) => (a[index + 1] = `rgba(var(--el-color-primary-rgb) / ${index + 1}0%)`, a), {})
+      }
+    }
+  },
   shortcuts: [
-    ['btn', 'px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
-    ['icon-btn', 'text-[0.9em] inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600']
+    ['btn', 'inline-block cursor-pointer text-base select-none transition duration-200 ease-in-out !hover:text-primary text-gray-500  dark:text-gray-200'],
+    ['layout', 'flex flex-col flex-nowrap bg-zinc-100 dark:bg-zinc-800 overflow-hidden'],
+    ['main', 'm-3 p-3 pb-2 bg-white dark:bg-zinc-900 shadow rounded flex flex-1 flex-col gap-2 overflow-auto']
   ],
   presets: [
     presetUno(),
@@ -35,10 +43,6 @@ export default defineConfig({
       }
     })
   ],
-  // transformers: [
-  //   transformerDirectives(),
-  //   transformerVariantGroup(),
-  // ],
   // 预加载 class 对应的样式 (配置安全列表)
   safelist: [
     'i-iconoir:home', 'i-iconoir:settings', 'i-iconoir:google-docs', 'i-iconoir:bookmark-book', 'i-iconoir:network-right', 'i-iconoir:open-new-window', 'i-iconoir:align-right',
