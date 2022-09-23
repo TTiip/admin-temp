@@ -3,11 +3,13 @@ import { ElAside, ElMain } from 'element-plus'
 import type { RouteRecordRaw } from 'vue-router'
 import menuData from '~/mock/menuData'
 import Sidebar from '~/layouts/sidebar/index'
+// import Navigation from '~/layouts/navigation/index'
 import Footer from '~/components/Footer.vue'
 
 export default defineComponent({
   name: 'Layouts',
   setup () {
+    const isCollapse = ref(false)
     const route = useRoute()
     console.log('route.path', route.path)
 
@@ -22,11 +24,12 @@ export default defineComponent({
               </Transition>
             </div>
           </header>
-          <Sidebar defaultActive={ route.path } menuData={ menuData } class="row-span-2 flex-1 b-0 b-r-1 b-r-zinc-200 dark:b-r-zinc-700 shadow-md z-3" />
+          <Sidebar collapse={ isCollapse.value } defaultActive={ route.path } menuData={ menuData } class="row-span-2 flex-1 b-0 b-r-1 b-r-zinc-200 dark:b-r-zinc-700 shadow-md z-3" />
         </ElAside>
 
         <ElMain class="flex-1 grid grid-rows-[3rem_34px_auto] relative overflow-x-hidden">
           <Footer />
+          {/* <Navigation isCollapse={ isCollapse.value } /> */}
           <router-view v-slots={{
             default: ({ Component, route }: { Component: any; route: RouteRecordRaw }) => (
               <Transition mode="out-in" name="main" appear={ true }>

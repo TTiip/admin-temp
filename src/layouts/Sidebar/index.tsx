@@ -4,7 +4,7 @@ import type { MenuItemType } from '~/types'
 import './index.css'
 
 export default defineComponent({
-  name: 'ElMenuBox',
+  name: 'SideBar',
   props: {
     menuData: {
       type: Array as PropType<MenuItemType[]>,
@@ -28,8 +28,8 @@ export default defineComponent({
           const slots = {
             title: () => (
               <>
-                { item.icon ? <i class={`${item.icon} m-6px text-18px`}/> : '' }
-                <span>{item.title}</span>
+                { item.icon ? <i class={`${item.icon} text-18px`}/> : '' }
+                <span class="indent-6px">{item.title}</span>
               </>
             )
           }
@@ -51,8 +51,8 @@ export default defineComponent({
                 index={ item.index }
               >
                 <>
-                  { item.icon ? <i class={`${item.icon} m-6px text-18px`}/> : '' }
-                  <span>{item.title}</span>
+                  { item.icon ? <i class={`${item.icon} text-18px`}/> : '' }
+                  <span class="indent-6px">{item.title}</span>
                 </>
               </ElMenuItem>
             )
@@ -64,7 +64,6 @@ export default defineComponent({
           { ...menuAttrs }
           default-active={ props.defaultActive! }
           router={ props.router }
-          collapse={ false }
           class="b-r-none! overflow-auto text-gray-700 dark:text-gray-200"
         >
           { renderSlots(props.menuData!) }
