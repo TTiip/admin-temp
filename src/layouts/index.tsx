@@ -17,7 +17,7 @@ export default defineComponent({
       <div class="flex h-screen">
         <ElAside width="auto" class="row-span-2 flex flex-col b-0 b-r-1 b-r-zinc-200 dark:b-r-zinc-700 shadow-md z-3">
           <header class="h-12 flex items-center shadow-md z-3 px-3 cursor-pointer">
-            <img onClick={() => isCollapse.value = !isCollapse.value} class="w-8 mx-1" src="/logo.png" />
+            <img class="w-8 mx-1" src="/logo.png" />
             <div class="relative overflow-hidden">
               <Transition enter-active-class="absolute" duration={ 300 } leave-active-class="absolute">
                 <h1 v-show={ !isCollapse.value } class="ml-1 text-primary center text-gray-700 dark:text-gray-200">name~</h1>
