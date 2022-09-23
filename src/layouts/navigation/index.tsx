@@ -7,6 +7,7 @@ export default defineComponent({
     // const user: any = {}
     // const tagsView: any = []
 
+    // 使用 useVModel 处理 props 偷个懒搞成双向绑定。
     const isCollapse = useVModel(props, 'isCollapse', emit)
     // watch(useBreakpoints({ tablet: 768 }).smaller('tablet'), val => {
     //   isCollapse.value = val
