@@ -1,5 +1,6 @@
 import { TransitionGroup } from 'vue'
 import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
+import ChooseTheme from '~/layouts/navigation/choose-theme'
 
 import './index.css'
 
@@ -45,6 +46,7 @@ export default defineComponent({
             </TransitionGroup>
           </ElBreadcrumb>
 
+          <ChooseTheme />
           <button class={`btn text-18px ${isFullscreen.value ? 'i-iconoir:collapse' : 'i-iconoir:expand'}`} onClick={ toggleFullscreen } />
 
           {/* <el-dropdown v-slots={{

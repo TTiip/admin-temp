@@ -4,7 +4,6 @@ import type { RouteRecordRaw } from 'vue-router'
 import menuData from '~/mock/menuData'
 import Sidebar from '~/layouts/sidebar/index'
 import Navigation from '~/layouts/navigation/index'
-import Footer from '~/components/Footer.vue'
 
 export default defineComponent({
   name: 'Layouts',
@@ -28,7 +27,6 @@ export default defineComponent({
         </ElAside>
 
         <ElMain class="flex-1 grid grid-rows-[3rem_34px_auto] relative overflow-x-hidden">
-          <Footer />
           <Navigation v-model={ [isCollapse.value, 'isCollapse'] } />
           <router-view v-slots={{
             default: ({ Component, route }: { Component: any; route: RouteRecordRaw }) => (
