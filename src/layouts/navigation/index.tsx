@@ -1,5 +1,6 @@
 import { TransitionGroup } from 'vue'
 import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
+import './index.css'
 
 export default defineComponent({
   name: 'Navigation',
@@ -28,10 +29,10 @@ export default defineComponent({
 
           <ElBreadcrumb class="mr-auto relative">
             <TransitionGroup name="breadcrumb">
-              <ElBreadcrumbItem>homepage</ElBreadcrumbItem>
-              <ElBreadcrumbItem>promotion management</ElBreadcrumbItem >
-              <ElBreadcrumbItem>promotion list</ElBreadcrumbItem>
-              <ElBreadcrumbItem>promotion detail</ElBreadcrumbItem>
+              <ElBreadcrumbItem key="homepage">homepage</ElBreadcrumbItem>
+              <ElBreadcrumbItem key="promotion management">promotion management</ElBreadcrumbItem >
+              <ElBreadcrumbItem key="promotion list">promotion list</ElBreadcrumbItem>
+              <ElBreadcrumbItem key="promotion detail">promotion detail</ElBreadcrumbItem>
               {/* {
                 (list as any).map((item: any) => {
                   <el-breadcrumb-item key={ item.meta?.title }>
