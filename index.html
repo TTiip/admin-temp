@@ -11,9 +11,8 @@
   <div id="app"></div>
   <script>
     (function () {
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      const setting = localStorage.getItem('color-schema') || 'auto'
-      if (setting === 'dark' || (prefersDark && setting !== 'light')) { document.documentElement.classList.toggle('dark', true) }
+      const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
+      if (setting !== 'light') { document.documentElement.classList.toggle('dark', true) }
 
       // 设置系统默认颜色
       const defaultColor = localStorage.getItem('--el-color-primary') || '#E6A23C'
