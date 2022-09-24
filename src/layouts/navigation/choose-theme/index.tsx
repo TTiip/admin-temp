@@ -14,7 +14,7 @@ export default defineComponent({
     const colorPrimary = useCssVar('--el-color-primary')
     const colorPrimaryRgb = useCssVar('--el-color-primary-rgb')
     const elColorPrimary = useLocalStorage('--el-color-primary', colorPrimary.value.trim())
-    watch(elColorPrimary, val => {
+    watch(elColorPrimary, (val: string) => {
       colorPrimary.value = val
       colorPrimaryRgb.value = hex2rgb(val)
     })
@@ -42,13 +42,14 @@ export default defineComponent({
         >
           <div class="flex gap-3">
             {
-              colorList.map(color => {
+              colorList.map(color => (
                 <div
                   key={ color }
+                  style={ `background: ${color};outline-color: ${color}` }
                   class={ `h-5 w-5 rounded cursor-pointer ${elColorPrimary.value === color ? 'outline outline-offset-1' : ''}` }
                   onClick={ () => elColorPrimary.value = color }
                 />
-              })
+              ))
             }
           </div>
         </ElPopover>
