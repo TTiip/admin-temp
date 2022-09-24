@@ -131,6 +131,11 @@ export default defineConfig({
       extensions: ['vue', 'js', 'jsx'],
       directoryAsNamespace: true,
       dts: true,
+      // 这里配置需要自动引入的文件路径
+      // 文件改动和编译的时候会自动更新 .d.ts
+      // 自动引入的组件在 tsx 文件中不能使用还是会提示找不到
+      // ts 文件没有测试过，tsx 文件中还是需要手动引入组件。
+      dirs: [],
       resolvers: [ElementPlusResolver()]
     }),
 
