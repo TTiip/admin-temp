@@ -1,5 +1,6 @@
 import { TransitionGroup } from 'vue'
 import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
+
 import './index.css'
 
 export default defineComponent({
@@ -15,7 +16,6 @@ export default defineComponent({
       isCollapse.value = val
     })
 
-    // const { isFullscreen, toggle } = useFullscreen()
     // const showMenu = ref(false)
 
     const route = useRoute()
@@ -45,9 +45,9 @@ export default defineComponent({
             </TransitionGroup>
           </ElBreadcrumb>
 
-          {/* <button class={`btn text-sm ${isFullscreen ? 'i-fa6-solid:compress' : 'i-fa6-solid:expand'}`} onClick={ toggle } />
+          <button class={`btn text-18px ${isFullscreen.value ? 'i-iconoir:collapse' : 'i-iconoir:expand'}`} onClick={ toggleFullscreen } />
 
-        <el-dropdown v-slots={{
+          {/* <el-dropdown v-slots={{
           dropdown: () => (
             <>
               <el-dropdown-item class="mt-1.5!" onClick={ router.push('/') }>
