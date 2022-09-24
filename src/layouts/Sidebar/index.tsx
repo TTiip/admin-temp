@@ -25,7 +25,6 @@ export default defineComponent({
     return () => {
       const renderSlots = (data: MenuItemType[]) =>
         data.map((item: MenuItemType) => {
-          console.log(1111)
           const slots = {
             title: () => (
               <>

@@ -1,4 +1,5 @@
-// import { defineProps, withModifiers } from 'vue'
+import { TransitionGroup } from 'vue'
+import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
 
 export default defineComponent({
   name: 'Navigation',
@@ -9,62 +10,64 @@ export default defineComponent({
 
     // 使用 useVModel 处理 props 偷个懒搞成双向绑定。
     const isCollapse = useVModel(props, 'isCollapse', emit)
-    // watch(useBreakpoints({ tablet: 768 }).smaller('tablet'), val => {
-    //   isCollapse.value = val
-    // })
+    watch(useBreakpoints({ tablet: 768 }).smaller('tablet'), val => {
+      isCollapse.value = val
+    })
 
     // const { isFullscreen, toggle } = useFullscreen()
     // const showMenu = ref(false)
 
-    // const route = useRoute()
-    // const router = useRouter()
-    // const list = computed(() => router.resolve(route).matched.filter(i => i?.meta.title))
+    const route = useRoute()
+    const router = useRouter()
+    const list = computed(() => router.resolve(route).matched.filter(i => i?.meta.title))
     // const list: any = []
     return () => {
-      console.log(isCollapse, 'isCollapse')
       return (
-        <div class="btn" onClick={() => isCollapse.value = !isCollapse.value}>isCollapse</div>
-        // <nav class="flex gap-3 items-center text-sm px-3">
-        //   <i class={ `cursor-pointer ${isCollapse.value ? 'i-line-md:menu-fold-right' : 'i-line-md:menu-fold-left'}` } onClick={ () => isCollapse.value = !isCollapse.value } />
+        <nav class="flex gap-3 items-center text-sm px-3">
+          <i class={ `cursor-pointer text-18px ${isCollapse.value ? 'i-iconoir:transition-right' : 'i-iconoir:transition-left'}` } onClick={ () => isCollapse.value = !isCollapse.value } />
 
-      //   <el-breadcrumb class="mr-auto relative">
-      //     <transition-group name="breadcrumb">
-      //       {
-      //         list.map((item: any) => {
-      //           <el-breadcrumb-item key={ item.meta?.title }>
-      //             <router-link class="cursor-pointer! font-400!" to={ item } onClick={ withModifiers(() => tagsView.push(item), ['stop']) }>
-      //               { item.meta?.title }
-      //             </router-link>
-      //           </el-breadcrumb-item>
-      //         })
-      //       }
-      //     </transition-group>
-      //   </el-breadcrumb>
+          <ElBreadcrumb class="mr-auto relative">
+            <TransitionGroup name="breadcrumb">
+              <ElBreadcrumbItem>homepage</ElBreadcrumbItem>
+              <ElBreadcrumbItem>promotion management</ElBreadcrumbItem >
+              <ElBreadcrumbItem>promotion list</ElBreadcrumbItem>
+              <ElBreadcrumbItem>promotion detail</ElBreadcrumbItem>
+              {/* {
+                (list as any).map((item: any) => {
+                  <el-breadcrumb-item key={ item.meta?.title }>
+                    <router-link class="cursor-pointer! font-400!" to={ item } onClick={ withModifiers(() => tagsView.push(item), ['stop']) }>
+                      { item.meta?.title }
+                    </router-link>
+                  </el-breadcrumb-item>
+                })
+              } */}
+            </TransitionGroup>
+          </ElBreadcrumb>
 
-      //   <button class={`btn text-sm ${isFullscreen ? 'i-fa6-solid:compress' : 'i-fa6-solid:expand'}`} onClick={ toggle } />
+          {/* <button class={`btn text-sm ${isFullscreen ? 'i-fa6-solid:compress' : 'i-fa6-solid:expand'}`} onClick={ toggle } />
 
-      //   <el-dropdown v-slots={{
-      //     dropdown: () => (
-      //       <>
-      //         <el-dropdown-item class="mt-1.5!" onClick={ router.push('/') }>
-      // 				控制台
-      //         </el-dropdown-item>
-      //         <el-dropdown-item onClick={ showMenu.value = true }>
-      // 				个人设置
-      //         </el-dropdown-item>
-      //         <el-dropdown-item divided class="mt-1.5!" onClick={ user.logout() }>
-      // 				退出登陆
-      //         </el-dropdown-item>
-      //       </>
-      //     )
-      //   }}>
-      //     <div class="flex items-center gap-1 cursor-pointer">
-      //       <i class="i-fa6-solid:circle-user text-xl text-gray-300 mx-1" />
-      //       { user.userInfo.name }
-      //       <i i-fa-solid:sort-down self-start />
-      //     </div>
-      //   </el-dropdown>
-      // </nav>
+        <el-dropdown v-slots={{
+          dropdown: () => (
+            <>
+              <el-dropdown-item class="mt-1.5!" onClick={ router.push('/') }>
+      				控制台
+              </el-dropdown-item>
+              <el-dropdown-item onClick={ showMenu.value = true }>
+      				个人设置
+              </el-dropdown-item>
+              <el-dropdown-item divided class="mt-1.5!" onClick={ user.logout() }>
+      				退出登陆
+              </el-dropdown-item>
+            </>
+          )
+        }}>
+          <div class="flex items-center gap-1 cursor-pointer">
+            <i class="i-fa6-solid:circle-user text-xl text-gray-300 mx-1" />
+            { user.userInfo.name }
+            <i i-fa-solid:sort-down self-start />
+          </div>
+        </el-dropdown> */}
+        </nav>
       )
     }
   }

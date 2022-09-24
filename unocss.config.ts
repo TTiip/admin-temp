@@ -45,7 +45,22 @@ export default defineConfig({
   ],
   // 预加载 class 对应的样式 (配置安全列表)
   safelist: [
-    'i-iconoir:home', 'i-iconoir:settings', 'i-iconoir:google-docs', 'i-iconoir:bookmark-book', 'i-iconoir:network-right', 'i-iconoir:open-new-window', 'i-iconoir:align-right',
-    ...['blue-500', 'teal-500', 'indigo-500', 'rose-500'].map(i => `group-hover:bg-${i} text-${i}`).join(' ').split(' ')
+    ...[
+      'iconoir:home',
+      'iconoir:settings',
+      'iconoir:google-docs',
+      'iconoir:bookmark-book',
+      'iconoir:network-right',
+      'iconoir:open-new-window',
+      'iconoir:align-right',
+      'iconoir:transition-left',
+      'iconoir:transition-right'
+    ].map(i => `i-${i}`).join(' ').split(' '),
+    ...[
+      'blue-500',
+      'teal-500',
+      'indigo-500',
+      'rose-500'
+    ].map(i => `group-hover:bg-${i} text-${i}`).join(' ').split(' ')
   ]
 })
