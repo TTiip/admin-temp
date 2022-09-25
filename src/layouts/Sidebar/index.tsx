@@ -31,7 +31,7 @@ export default defineComponent({
                 <ElIcon>
                   <i class={`${item.icon} text-18px`}/>
                 </ElIcon>
-                <span>{item.title}</span>
+                <span>{item.name}</span>
               </>
             )
           }
@@ -39,8 +39,8 @@ export default defineComponent({
           if (item.children && item.children.length) {
             return (
               <ElSubMenu
-                key={ item.index }
-                index={ item.index }
+                key={ item.path }
+                index={ item.path }
                 v-slots={ slots }
               >
                 { renderSlots(item.children) }
@@ -49,14 +49,14 @@ export default defineComponent({
           } else {
             return (
               <ElMenuItem
-                key={ item.index }
-                index={ item.index }
+                key={ item.path }
+                index={ item.path }
               >
                 <>
                   <ElIcon>
                     <i class={`${item.icon} text-18px`}/>
                   </ElIcon>
-                  <span>{item.title}</span>
+                  <span>{item.name}</span>
                 </>
               </ElMenuItem>
             )

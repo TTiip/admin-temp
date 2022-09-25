@@ -1,7 +1,12 @@
 interface MenuItemType {
-	index: string
-	title: string
+	path: string
+	name: string
 	icon: string
+	meta?: {
+		hidden: boolean
+		permission: boolean
+		title: string
+	}
 	children: MenuItemType[]
 }
 
