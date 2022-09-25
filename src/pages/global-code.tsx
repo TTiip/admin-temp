@@ -5,7 +5,7 @@ export default defineComponent({
       <route lang="yaml">
         component: ~/layouts/index.tsx
         meta:
-          title: 全局代码
+          title: 数据字典
           showId: true
       </route>
     )

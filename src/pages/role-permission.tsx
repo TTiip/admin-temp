@@ -5,7 +5,7 @@ export default defineComponent({
       <route lang="yaml">
         component: ~/layouts/index.tsx
         meta:
-          title: 角色权限
+          title: 系统管理
           showId: true
       </route>
     )

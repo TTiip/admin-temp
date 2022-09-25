@@ -1,4 +1,4 @@
-import { TransitionGroup } from 'vue'
+import { TransitionGroup, withModifiers } from 'vue'
 import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
 import ChooseTheme from '~/layouts/navigation/choose-theme'
 
@@ -21,6 +21,7 @@ export default defineComponent({
 
     const route = useRoute()
     const router = useRouter()
+    // 过滤出 meta 中含有 title 的数据
     const list = computed(() => router.resolve(route).matched.filter(i => i?.meta.title))
     // const list: any = []
     return () => {
@@ -30,19 +31,15 @@ export default defineComponent({
 
           <ElBreadcrumb class="mr-auto relative">
             <TransitionGroup name="breadcrumb">
-              <ElBreadcrumbItem key="homepage">homepage</ElBreadcrumbItem>
-              <ElBreadcrumbItem key="promotion management">promotion management</ElBreadcrumbItem >
-              <ElBreadcrumbItem key="promotion list">promotion list</ElBreadcrumbItem>
-              <ElBreadcrumbItem key="promotion detail">promotion detail</ElBreadcrumbItem>
-              {/* {
-                (list as any).map((item: any) => {
-                  <el-breadcrumb-item key={ item.meta?.title }>
+              {
+                list.value.map((item: any) => (
+                  <ElBreadcrumbItem key={ item.meta?.title }>
                     <router-link class="cursor-pointer! font-400!" to={ item } onClick={ withModifiers(() => tagsView.push(item), ['stop']) }>
                       { item.meta?.title }
                     </router-link>
-                  </el-breadcrumb-item>
-                })
-              } */}
+                  </ElBreadcrumbItem>
+                ))
+              }
             </TransitionGroup>
           </ElBreadcrumb>
 
