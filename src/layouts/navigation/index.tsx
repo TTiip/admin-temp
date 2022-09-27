@@ -11,6 +11,7 @@ export default defineComponent({
     // const user: any = {}
     // const tagsViewStore: any = {}
     const tagsViewInstance = getTagsViewInstance()
+    console.log(tagsViewInstance.aaa)
 
     // 使用 useVModel 处理 props 偷个懒搞成双向绑定。
     const isCollapse = useVModel(props, 'isCollapse', emit)
