@@ -4,6 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import menuData from '~/mock/menuData'
 import Sidebar from '~/layouts/sidebar/index'
 import Navigation from '~/layouts/navigation/index'
+import TagsView from '~/layouts/tagsView/index'
 
 export default defineComponent({
   name: 'Layouts',
@@ -27,7 +28,8 @@ export default defineComponent({
         </ElAside>
 
         <ElMain class="flex-1 grid grid-rows-[3rem_34px_auto] relative overflow-x-hidden">
-          <Navigation v-model={ [isCollapse.value, 'isCollapse'] } />
+          <Navigation class="h-40px" v-model={ [isCollapse.value, 'isCollapse'] } />
+          <TagsView />
           <router-view v-slots={{
             default: ({ Component, route }: { Component: any; route: RouteRecordRaw }) => (
               <Transition mode="out-in" name="main" appear={ true }>
