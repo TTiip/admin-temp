@@ -59,9 +59,9 @@ export default defineConfig({
         // 这里建议 console.log(route) 查看路由信息 在做调试
         if (route.path === '/:all(.*)*') {
           return {
-            ...route,
+            ...route
             // 重定向
-            redirect: '/'
+            // redirect: '/'
           }
         }
       },
