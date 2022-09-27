@@ -1,10 +1,9 @@
 import { defineStore } from 'pinia'
 import type { RouteLocation, RouteLocationRaw } from 'vue-router'
 
-const router = useRouter()
-const route = useRoute()
-
 const useTagsViewStore = defineStore('tagsView', () => {
+  const router = useRouter()
+  const route = useRoute()
   const cachedViews: any = ref([])
   const visitedViews: any = JSON.parse(localStorage.getItem('visitedViews') || '[]') as RouteLocation[]
 
@@ -55,6 +54,8 @@ const useTagsViewStore = defineStore('tagsView', () => {
     cachedViews.value = cachedViews.value.filter((v: any) => v !== route?.name)
   }
   const listPush = async (view: RouteLocationRaw) => {
+    console.log(router, 'listPush - router')
+    console.log(route, 'listPush - route')
     const coverRoute: any = methodResolve(view)
     if (coverRoute.path === route.path) { return router.push('/redirect') }
     router.push(route)

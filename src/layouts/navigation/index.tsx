@@ -9,8 +9,8 @@ export default defineComponent({
   props: ['isCollapse'],
   setup (props, { emit }) {
     // const user: any = {}
-    const tagsViewList: any = []
-    // console.log(tagsViewStore, 'tagsViewStore')
+    // const tagsViewStore: any = {}
+    const tagsViewInstance = getTagsViewInstance()
 
     // 使用 useVModel 处理 props 偷个懒搞成双向绑定。
     const isCollapse = useVModel(props, 'isCollapse', emit)
@@ -35,7 +35,7 @@ export default defineComponent({
               {
                 list.value.map((item: any) => (
                   <ElBreadcrumbItem key={ item.meta?.title }>
-                    <router-link class="cursor-pointer! font-400!" to={ item } onClick={ withModifiers(() => tagsViewList.listPush(item), ['stop']) }>
+                    <router-link class="cursor-pointer! font-400!" to={ item } onClick={ withModifiers(() => tagsViewInstance.listPush(item), ['stop']) }>
                       { item.meta?.title }
                     </router-link>
                   </ElBreadcrumbItem>

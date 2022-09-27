@@ -1,7 +1,7 @@
 // tagsViewStore
 
-const tagsViewStore = useTagsViewStore()
+const getTagsViewInstance = () => useTagsViewStore()
 
 export {
-  tagsViewStore
+  getTagsViewInstance
 }
