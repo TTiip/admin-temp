@@ -3,7 +3,9 @@ import {
   presetAttributify,
   presetIcons,
   presetUno,
-  presetWebFonts
+  presetWebFonts,
+  transformerDirectives,
+  transformerVariantGroup
 } from 'unocss'
 
 export default defineConfig({
@@ -42,6 +44,12 @@ export default defineConfig({
         mono: 'DM Mono'
       }
     })
+  ],
+  // css 中使用原子化 类名
+  // @apply 这种写法
+  transformers: [
+    transformerDirectives(),
+    transformerVariantGroup()
   ],
   // 预加载 class 对应的样式 (配置安全列表)
   safelist: [
