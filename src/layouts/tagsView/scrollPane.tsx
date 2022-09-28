@@ -18,7 +18,6 @@ export default defineComponent({
     const scrollWrapper = computed(() => scrollContainer.value.wrap$)
 
     const handleScroll = (e: WheelEvent) => {
-      console.log(e.deltaX, 'e.deltaX')
       scrollWrapper.value.scrollLeft = scrollWrapper.value.scrollLeft + -e.deltaX
     }
 

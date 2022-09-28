@@ -10,3 +10,16 @@ body,
 .el-aside, .el-main {
   padding: 0!important;
 }
+
+.el-scrollbar__view {
+  display: flex;
+}
+
+.el-scrollbar__wrap {
+  flex: 1;
+  height: auto;
+}
+
+.el-scrollbar__bar {
+  bottom: -6px;
+}

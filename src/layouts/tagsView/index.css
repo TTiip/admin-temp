@@ -1,0 +1,61 @@
+.tab-item {
+  color: skyblue;
+
+  --color: transparent;
+
+  @apply relative text-sm h-7 cursor-pointer rounded-t-lg -mx-0.75
+  relative inline-flex items-center pl-6 pr-4 bg-[var(--color)]
+
+	@apply: 'z-1';
+}
+
+.tab-item::before,
+.tab-item::after {
+  @apply absolute bottom-0 content-none rounded-full w-5 h-5;
+
+  box-shadow: 0 0 0 4px var(--color);
+}
+
+.tab-item::before {
+  @apply -left-5;
+
+  clip-path: inset(50% -10px 0 50%);
+}
+
+.tab-item::after {
+  @apply -right-5;
+
+  clip-path: inset(50% 50% 0 -10px);
+}
+
+.tab-item:hover {
+  --color: #f3f4f6;
+}
+
+.dark .tab-item:hover {
+  --color: #52525b;
+}
+
+.tab-item:first-child .split {
+  @apply hidden;
+}
+
+.tab-item.active {
+  --color: white;
+}
+
+.dark .tab-item.active {
+  --color: #18181b;
+}
+
+.tab-item.split {
+  @apply hidden;
+}
+
+.v-dropdown {
+  @apply flex flex-col -mx-3 -my-2;
+}
+
+.v-dropdown li {
+	@apply hover:(bg-primary-1 text-primary) py-1.5 px-4 cursor-pointer;
+}
