@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { useAttrs } from 'vue'
+import { withModifiers } from 'vue'
 import type { RouteLocation } from 'vue-router'
 import { ElScrollbar } from 'element-plus'
 
@@ -14,17 +14,18 @@ export default defineComponent({
   setup (props, ctx) {
     const attrs = useAttrs()
     const { tagList = [] } = props
-    const scrollContainer = $shallowRef<any>()
+    const scrollContainer = shallowRef<any>()
+    const scrollWrapper = computed(() => scrollContainer.value.wrap$)
 
-    const scrollWrapper = $computed(() => scrollContainer.wrap$)
-    const handleScroll = ({ scrollLeft }: { scrollLeft: number }) => {
-      scrollWrapper.scrollLeft = scrollWrapper.scrollLeft + -scrollLeft
+    const handleScroll = (e: WheelEvent) => {
+      console.log(e.deltaX, 'e.deltaX')
+      scrollWrapper.value.scrollLeft = scrollWrapper.value.scrollLeft + -e.deltaX
     }
 
     const moveToTarget = (currentTag: RouteLocation) => {
-      const $container = scrollContainer.$el
+      const $container = scrollContainer.value.$el
       const $containerWidth = $container.offsetWidth
-      const $scrollWrapper = scrollWrapper
+      const $scrollWrapper = scrollWrapper.value
 
       let firstTag = null
       let lastTag = null
@@ -59,13 +60,12 @@ export default defineComponent({
       moveToTarget
     })
 
-    // onScroll={ ({ scrollLeft }) => handleScroll({ scrollLeft }) }
-
     return () => (
       <ElScrollbar
         { ...attrs }
         ref={ scrollContainer }
         class="whitespace-nowrap flex-1 flex items-end bottom-[-0.1em]"
+        onWheel={ withModifiers(handleScroll, ['passive']) }
       >
         { ctx.slots?.default ? ctx.slots?.default() : null }
       </ElScrollbar>
