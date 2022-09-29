@@ -71,29 +71,35 @@ export default defineComponent({
         })
     })
 
-    return () => (
-      <div class="px-1 min-h-6 overflow-hidden relative flex flex-nowrap bg-gray-200 dark:bg-zinc-700 dark:bg-opacity-60">
-        <ScrollPane class="h-auto!">
-          <div class="flex  scrollContent pl-10px">
-            {
-              Array.from(Array(5).keys()).map((item: any) =>
-                <div
-                  class="h-24px shrink-0"
-                  key={ item }
-                >
-                  <div class="tab-item">
-                    <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
-                    <div class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-green-500" />
-                    <div>{ item }</div>
-                    <span class="ml-5 text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
-                      <i class="i-iconoir-cancel" />
-                    </span>
-                  </div>
-                </div>)
-            }
-          </div>
-        </ScrollPane>
-      </div>
-    )
+    return () => {
+      return (
+        <div class="px-1 min-h-7 overflow-hidden relative flex flex-nowrap bg-gray-200 dark:bg-zinc-700 dark:bg-opacity-60">
+          <ScrollPane class="h-auto!">
+            <div class="flex  scrollContent pl-10px">
+              {
+                tagsViewInstance.visitedViews.map((item: any) =>
+                  <div
+                    class="h-24px shrink-0"
+                    key={ item }
+                  >
+                    <div
+                      class={ `tab-item ${isActive(item) ? 'active' : ''}` }
+                      // :ref="(val:any) => { if (val){ val.to = tag;tags[i] = val } }"
+                      // :class="{ active: isActive(tag) }"
+                    >
+                      <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
+                      <div v-show={ isActive(item) } class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-[var(--el-color-primary)]" />
+                      <div>{ item.meta.title }</div>
+                      <span v-show={ isActive(item) } class="ml-6px text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
+                        <i class="i-iconoir-cancel" />
+                      </span>
+                    </div>
+                  </div>)
+              }
+            </div>
+          </ScrollPane>
+        </div>
+      )
+    }
   }
 })

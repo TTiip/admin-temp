@@ -1,9 +1,8 @@
 .tab-item {
-  color: skyblue;
-
+  --color: white;
   --color: transparent;
 
-  @apply relative text-sm h-6 cursor-pointer rounded-t-lg -mx-0.75 inline-flex items-center pl-6 pr-2 bg-[var(--color)];
+  @apply relative text-sm h-7 cursor-pointer rounded-t-lg inline-flex items-center pl-2 pr-2 bg-[var(--color)];
 
 	@apply z-1;
 }
@@ -40,7 +39,8 @@
 }
 
 .tab-item.active {
-  --color: white;
+  color: var(--el-color-primary);
+  @apply pl-6 ;
 }
 
 .dark .tab-item.active {
