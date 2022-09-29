@@ -27,10 +27,12 @@
 
 .tab-item:hover {
   --color: #f3f4f6;
+  border-bottom-right-radius: 6px;
 }
 
 .dark .tab-item:hover {
   --color: #52525b;
+  border-bottom-right-radius: 6px;
 }
 
 .tab-item:first-child .split {
@@ -41,6 +43,7 @@
   color: var(--el-color-primary);
   --color: #fff;
   @apply pl-6 z-99;
+  border-bottom-right-radius: 6px;
 }
 
 .dark .tab-item.active {
