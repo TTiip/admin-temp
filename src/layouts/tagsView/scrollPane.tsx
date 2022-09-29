@@ -63,7 +63,7 @@ export default defineComponent({
       <ElScrollbar
         { ...attrs }
         ref={ scrollContainer }
-        class="whitespace-nowrap flex-1 flex items-end bottom-[-0.1em]"
+        class="whitespace-nowrap flex-1 flex items-end"
         onWheel={ withModifiers(handleScroll, ['passive']) }
       >
         { ctx.slots?.default ? ctx.slots?.default() : null }

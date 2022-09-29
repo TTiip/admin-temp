@@ -79,21 +79,16 @@ export default defineComponent({
               {
                 tagsViewInstance.visitedViews.map((item: any) =>
                   <div
-                    class="h-24px shrink-0"
-                    key={ item }
+                    class={ `z-9 h-24px shrink-0 tab-item ${isActive(item) ? 'active' : ''}` }
+                    onClick={ () => tagsViewInstance.pushRoute(route) }
+                    key={ item?.fullPath }
                   >
-                    <div
-                      class={ `tab-item ${isActive(item) ? 'active' : ''}` }
-                      // :ref="(val:any) => { if (val){ val.to = tag;tags[i] = val } }"
-                      // :class="{ active: isActive(tag) }"
-                    >
-                      <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
-                      <div v-show={ isActive(item) } class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-[var(--el-color-primary)]" />
-                      <div>{ item.meta.title }</div>
-                      <span v-show={ isActive(item) } class="ml-6px text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
-                        <i class="i-iconoir-cancel" />
-                      </span>
-                    </div>
+                    <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
+                    <div v-show={ isActive(item) } class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-[var(--el-color-primary)]" />
+                    <div class="px-6px">{ item?.meta?.title }</div>
+                    <span v-show={ isActive(item) } class="ml-6px text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
+                      <i class="i-iconoir-cancel" />
+                    </span>
                   </div>)
               }
             </div>

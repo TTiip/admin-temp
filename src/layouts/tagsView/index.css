@@ -40,14 +40,15 @@
 
 .tab-item.active {
   color: var(--el-color-primary);
-  @apply pl-6 ;
+  @apply pl-6 z-99;
 }
 
 .dark .tab-item.active {
   --color: #18181b;
 }
 
-.tab-item.split {
+.tab-item.active .split,
+.tab-item.active+.tab-item .split {
   @apply hidden;
 }
 

@@ -29,7 +29,7 @@ export default defineComponent({
 
         <ElMain class="flex-1 grid grid-rows-[3rem_34px_auto] relative overflow-x-hidden">
           <Navigation class="h-40px" v-model={ [isCollapse.value, 'isCollapse'] } />
-          <TagsView />
+          <TagsView class="mt-6px" />
           <router-view v-slots={{
             default: ({ Component, route }: { Component: any; route: RouteRecordRaw }) => (
               <Transition mode="out-in" name="main" appear={ true }>

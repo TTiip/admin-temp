@@ -65,8 +65,6 @@ const useTagsViewStore = defineStore('tagsView', () => {
   }
   const pushRoute = async (view: RouteLocationRaw) => {
     const coverRoute: any = methodResolve(view)
-    console.log(coverRoute, 'coverRoute')
-    console.log(route, 'route')
     if (coverRoute.path === route.path) {
       return false
     }
