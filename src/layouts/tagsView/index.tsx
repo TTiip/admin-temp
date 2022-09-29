@@ -1,4 +1,5 @@
 import type { RouteLocation } from 'vue-router'
+import type { SortableEvent } from 'sortablejs'
 import Sortable from 'sortablejs'
 import ScrollPane from '~/layouts/tagsView/scrollPane'
 import './index.css'
@@ -67,11 +68,17 @@ export default defineComponent({
     }, { immediate: true })
 
     onMounted(() => {
-      Sortable.create(document.querySelector('.scrollContent'),
+      Sortable.create(document.querySelector('.scrollContent')!,
         {
           animation: 150,
-          onEnd (evt: Event) {
-            console.log(evt, 'evtevtevtevt')
+          onEnd (evt: SortableEvent) {
+            // 拖拽以后改变 strore 🍍 中的数据，出发 $subscribe 方法持久化存储。
+            if (evt.oldIndex !== evt.newIndex) {
+              let arr = JSON.parse(JSON.stringify(tagsViewInstance.visitedViews))
+              const currRow = arr.splice(evt.oldIndex, 1)[0]
+              arr.splice(evt.newIndex, 0, currRow)
+              tagsViewInstance.visitedViews = arr
+            }
           }
         })
     })
