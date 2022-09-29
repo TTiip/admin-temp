@@ -14,21 +14,21 @@ export default defineComponent({
     //   `${tag.meta.title || ''}${tag.query?.pageTitle ? ` : ${tag.query?.pageTitle}` : ''}`
     // useTitle(computed(tagTitle), { titleTemplate: `%s | ${settings.name}` })
 
-    watch(() => route.fullPath, () => {
-      tagsViewInstance.addView(route)
-      moveToCurrentTag()
-    }, { immediate: true })
+    const tags = shallowRef<{ to: RouteLocation }[]>([])
+    const scrollPaneRef = shallowRef<any>()
 
-    const tags = $shallowRef<{ to: RouteLocation }[]>([])
-    const scrollPaneRef = $shallowRef<any>()
-    async function moveToCurrentTag () {
+    const moveToCurrentTag = async () => {
       await nextTick()
-      if (!tags.length) { return }
-      const tag = tags.find((i: any) => i.to?.path === route.path)
-      if (tag) { scrollPaneRef?.moveToTarget(tag) }
+      if (!tags.value.length) {
+        return false
+      }
+      const tag = tags.value.find((i: any) => i.to?.path === route.path)
+      if (tag) {
+        scrollPaneRef.value?.moveToTarget(tag)
+      }
     }
 
-    function toLastView () {
+    const toLastView = () => {
       const latestView = tagsViewInstance.visitedViews.slice(-1)[0]
       if (latestView) { router.push(latestView) } else { router.push('/') }
     }
@@ -61,6 +61,11 @@ export default defineComponent({
       if (event.type === 'click') { selectedTag && show && (show = false) }
     })
 
+    watch(() => route.fullPath, () => {
+      tagsViewInstance.addView(route)
+      moveToCurrentTag()
+    }, { immediate: true })
+
     onMounted(() => {
       Sortable.create(document.querySelector('.scrollContent'),
         {
@@ -86,7 +91,7 @@ export default defineComponent({
                     <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
                     <div v-show={ isActive(item) } class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-[var(--el-color-primary)]" />
                     <div class="px-6px">{ item?.meta?.title }</div>
-                    <span v-show={ isActive(item) } class="ml-6px text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
+                    <span v-show={ isActive(item) } class="text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
                       <i class="i-iconoir-cancel" />
                     </span>
                   </div>)
