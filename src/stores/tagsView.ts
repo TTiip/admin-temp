@@ -68,7 +68,7 @@ const useTagsViewStore = defineStore('tagsView', () => {
     if (coverRoute.path === route.path) {
       return false
     }
-    router.push(route)
+    router.push(view)
   }
 
   const dropView = (view?: RouteLocationRaw) => {

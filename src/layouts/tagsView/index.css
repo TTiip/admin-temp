@@ -7,8 +7,7 @@
 	@apply z-1;
 }
 
-.tab-item::before,
-.tab-item::after {
+.tab-item::before {
   @apply absolute bottom-0 content-none rounded-full w-5 h-5;
 
   box-shadow: 0 0 0 4px var(--color);
@@ -40,11 +39,13 @@
 
 .tab-item.active {
   color: var(--el-color-primary);
+  --color: #fff;
   @apply pl-6 z-99;
 }
 
 .dark .tab-item.active {
   --color: #18181b;
+  border-bottom-right-radius: 6px;
 }
 
 .tab-item.active .split,

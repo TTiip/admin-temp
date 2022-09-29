@@ -80,7 +80,7 @@ export default defineComponent({
                 tagsViewInstance.visitedViews.map((item: any) =>
                   <div
                     class={ `z-9 h-24px shrink-0 tab-item ${isActive(item) ? 'active' : ''}` }
-                    onClick={ () => tagsViewInstance.pushRoute(route) }
+                    onClick={ () => tagsViewInstance.pushRoute(item) }
                     key={ item?.fullPath }
                   >
                     <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
