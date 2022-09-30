@@ -2,9 +2,8 @@
   --color: white;
   --color: transparent;
 
-  @apply relative text-sm h-7 cursor-pointer rounded-t-lg inline-flex items-center pl-2 pr-2 bg-[var(--color)];
-
-	@apply z-1;
+  @apply relative text-sm h-7 cursor-pointer rounded-t-lg inline-flex items-center pl-2 pr-2 bg-[var(--color)] z-1;
+  width: 500px;
 }
 
 .tab-item::before {
@@ -42,7 +41,7 @@
 .tab-item.active {
   color: var(--el-color-primary);
   --color: #fff;
-  @apply pl-6 z-99;
+  @apply pl-6;
   border-bottom-right-radius: 6px;
 }
 

@@ -25,6 +25,9 @@ export default defineComponent({
       const $container = scrollContainer.value.$el
       const $containerWidth = $container.offsetWidth
       const $scrollWrapper = scrollWrapper.value
+      // console.log($container, '$container')
+      // console.log($containerWidth, '$containerWidth')
+      // console.log($scrollWrapper, '$scrollWrapper')
 
       let firstTag = null
       let lastTag = null
@@ -44,14 +47,19 @@ export default defineComponent({
         const currentIndex = tagList.findIndex(item => item === currentTag)
         const prevTag = tagList[currentIndex - 1]
         const nextTag = tagList[currentIndex + 1]
+        console.log(prevTag, 'prevTag')
+        console.log(nextTag, 'nextTag')
 
         // nextTag 之后的标签的 OffsetLeft
         const afterNextTagOffsetLeft = nextTag.offsetLeft + nextTag.offsetWidth
 
         // prevTag 之后的标签的 OffsetLeft
         const beforePrevTagOffsetLeft = prevTag.offsetLeft
-
-        if (afterNextTagOffsetLeft > $scrollWrapper.scrollLeft + $containerWidth) { $scrollWrapper.scrollLeft = afterNextTagOffsetLeft - $containerWidth } else if (beforePrevTagOffsetLeft < $scrollWrapper.scrollLeft) { $scrollWrapper.scrollLeft = beforePrevTagOffsetLeft }
+        if (afterNextTagOffsetLeft > $scrollWrapper.scrollLeft + $containerWidth) {
+          $scrollWrapper.scrollLeft = afterNextTagOffsetLeft - $containerWidth
+        } else if (beforePrevTagOffsetLeft < $scrollWrapper.scrollLeft) {
+          $scrollWrapper.scrollLeft = beforePrevTagOffsetLeft
+        }
       }
     }
 

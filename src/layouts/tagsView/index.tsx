@@ -25,7 +25,7 @@ export default defineComponent({
       }
       const tag = tags.value.find((i: any) => i.to?.path === route.path)
       if (tag) {
-        scrollPaneRef.value?.moveToTarget(tag)
+        scrollPaneRef.value?.moveToTarget(tag.to)
       }
     }
 
@@ -86,22 +86,35 @@ export default defineComponent({
     return () => {
       return (
         <div class="px-1 min-h-7 overflow-hidden relative flex flex-nowrap bg-gray-200 dark:bg-zinc-700 dark:bg-opacity-60">
-          <ScrollPane class="h-auto!">
+          <ScrollPane
+            class="h-auto!"
+            ref={ scrollPaneRef }
+            tagList={tagsViewInstance.visitedViews}
+          >
             <div class="flex  scrollContent pl-10px">
               {
-                tagsViewInstance.visitedViews.map((item: any) =>
-                  <div
-                    class={ `z-9 h-24px shrink-0 tab-item ${isActive(item) ? 'active' : ''}` }
-                    onClick={ () => tagsViewInstance.pushRoute(item) }
-                    key={ item?.fullPath }
-                  >
-                    <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
-                    <div v-show={ isActive(item) } class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-[var(--el-color-primary)]" />
-                    <div class="px-6px">{ item?.meta?.title }</div>
-                    <span v-show={ isActive(item) } class="text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
-                      <i class="i-iconoir-cancel" />
-                    </span>
-                  </div>)
+                tagsViewInstance.visitedViews.map((item: any, index: number) => {
+                  return (
+                    <div
+                      ref={(val: any) => {
+                        if (val) {
+                          val.to = item
+                          tags.value[index] = val
+                        }
+                      }}
+                      class={ `z-9 h-24px shrink-0 tab-item ${isActive(item) ? 'active' : ''}` }
+                      onClick={ () => tagsViewInstance.pushRoute(item) }
+                      key={ item?.fullPath }
+                    >
+                      <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
+                      <div v-show={ isActive(item) } class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-[var(--el-color-primary)]" />
+                      <div class="px-6px">{ item?.meta?.title }</div>
+                      <span v-show={ isActive(item) } class="text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
+                        <i class="i-iconoir-cancel" />
+                      </span>
+                    </div>
+                  )
+                })
               }
             </div>
           </ScrollPane>
