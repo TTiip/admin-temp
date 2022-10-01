@@ -40,18 +40,19 @@
 .tab-item.active {
   color: var(--el-color-primary);
   --color: #fff;
-  @apply pl-6;
+  @apply pl-6 duration-300;
   border-bottom-right-radius: 6px;
 }
 
 .dark .tab-item.active {
   --color: #18181b;
   border-bottom-right-radius: 6px;
+  @apply duration-300;
 }
 
 .tab-item.active .split,
 .tab-item.active+.tab-item .split {
-  @apply hidden;
+  @apply hidden duration-300;
 }
 
 .v-dropdown {
