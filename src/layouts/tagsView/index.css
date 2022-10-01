@@ -3,7 +3,6 @@
   --color: transparent;
 
   @apply relative text-sm h-7 cursor-pointer rounded-t-lg inline-flex items-center pl-2 pr-2 bg-[var(--color)] z-1;
-  width: 500px;
 }
 
 .tab-item::before {

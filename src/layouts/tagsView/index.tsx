@@ -25,7 +25,7 @@ export default defineComponent({
       }
       const tag = tags.value.find((i: any) => i.to?.path === route.path)
       if (tag) {
-        scrollPaneRef.value?.moveToTarget(tag.to)
+        scrollPaneRef.value?.moveToTarget(tag)
       }
     }
 
@@ -89,7 +89,7 @@ export default defineComponent({
           <ScrollPane
             class="h-auto!"
             ref={ scrollPaneRef }
-            tagList={tagsViewInstance.visitedViews}
+            tagList={tags.value}
           >
             <div class="flex  scrollContent pl-10px">
               {
