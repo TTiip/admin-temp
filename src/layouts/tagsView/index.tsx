@@ -17,7 +17,7 @@ export default defineComponent({
     const scrollPaneRef = shallowRef<any>()
 
     const selectedTag = ref<any>()
-    let show = ref(false)
+    let show = ref<boolean>(false)
 
     const moveToCurrentTag = async () => {
       await nextTick()
@@ -69,6 +69,10 @@ export default defineComponent({
       toLastView()
     }
 
+    const tagItemClick = (item: any) => {
+      tagsViewInstance.pushRoute(item)
+    }
+
     watch(() => route.fullPath, () => {
       tagsViewInstance.addView(route)
       moveToCurrentTag()
@@ -110,7 +114,7 @@ export default defineComponent({
                         }
                       }}
                       class={ `z-9 h-24px shrink-0 tab-item ${isActive(item) ? 'active' : ''}` }
-                      onClick={ () => tagsViewInstance.pushRoute(item) }
+                      onClick={ () => tagItemClick(item) }
                       key={ item?.fullPath }
                       onContextmenu={ withModifiers(() => {
                         selectedTag.value = tags.value[index]
@@ -129,31 +133,33 @@ export default defineComponent({
               }
             </div>
           </ScrollPane>
-          <div v-show={ show.value }>
-            <ElPopover
-              v-model={[show.value, 'visible']}
-              trigger="click"
-              popper-options={{ modifiers: [{ name: 'offset', options: { offset: [0, 0] } }] }}
-              popper-class="min-w-[unset]! w-auto!"
-              virtual-ref={ selectedTag.value }
-              virtual-triggering
-            >
-              <ul class="v-dropdown">
-                <li onClick={ () => reflash(selectedTag.value?.to) }>
-                  刷新
-                </li>
-                <li onClick={ () => closeTag(selectedTag.value?.to) }>
-                  关闭
-                </li>
-                <li onClick={ () => closeOthersTags(selectedTag.value?.to) }>
-                  关闭其他
-                </li>
-                <li onClick={ () => closeAllTags() }>
-                  关闭全部
-                </li>
-              </ul>
-            </ElPopover>
-          </div>
+          {
+            show.value
+              ? (<ElPopover
+                v-model={[show.value, 'visible']}
+                trigger="click"
+                popper-options={{ modifiers: [{ name: 'offset', options: { offset: [0, 0] } }] }}
+                popper-class="min-w-[unset]! w-auto!"
+                virtual-ref={ selectedTag.value }
+                virtual-triggering
+              >
+                <ul class="v-dropdown">
+                  <li onClick={ () => reflash(selectedTag.value?.to) }>
+                    刷新
+                  </li>
+                  <li onClick={ () => closeTag(selectedTag.value?.to) }>
+                    关闭
+                  </li>
+                  <li onClick={ () => closeOthersTags(selectedTag.value?.to) }>
+                    关闭其他
+                  </li>
+                  <li onClick={ () => closeAllTags() }>
+                    关闭全部
+                  </li>
+                </ul>
+              </ElPopover>)
+              : null
+          }
         </div>
       )
     }
