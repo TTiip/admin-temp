@@ -52,16 +52,18 @@ const useTagsViewStore = defineStore('tagsView', () => {
   }
 
   const dropCachedView = (view: RouteLocationRaw) => {
-    const index = cachedViews.value.indexOf(router.resolve(view).name)
+    const index = cachedViews.value.findIndex((v: any) => v.path === router.resolve(view).path)
     if (index >= 0) {
       cachedViews.value.splice(index, 1)
     }
   }
 
   const delOthersViews = (view?: RouteLocationRaw) => {
-    const route = router.resolve(view || '')
-    visitedViews.value.value = visitedViews.value.value.filter((v: any) => v.path === route?.path)
+    const route = router.resolve(view || '/')
+    visitedViews.value = visitedViews.value.filter((v: any) => v.path === route?.path)
     cachedViews.value = cachedViews.value.filter((v: any) => v !== route?.name)
+    console.log('visitedViews.value', visitedViews.value)
+    console.log('cachedViews.value', cachedViews.value)
   }
   const pushRoute = async (view: RouteLocationRaw) => {
     const coverRoute: any = methodResolve(view)

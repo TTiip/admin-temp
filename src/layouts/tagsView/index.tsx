@@ -1,5 +1,7 @@
+import { withModifiers } from 'vue'
 import type { RouteLocation } from 'vue-router'
 import type { SortableEvent } from 'sortablejs'
+import { ElPopover } from 'element-plus'
 import Sortable from 'sortablejs'
 import ScrollPane from '~/layouts/tagsView/scrollPane'
 import './index.css'
@@ -11,12 +13,11 @@ export default defineComponent({
     const router = useRouter()
     const tagsViewInstance = getTagsViewInstance()
 
-    // const tagTitle = (tag = route) =>
-    //   `${tag.meta.title || ''}${tag.query?.pageTitle ? ` : ${tag.query?.pageTitle}` : ''}`
-    // useTitle(computed(tagTitle), { titleTemplate: `%s | ${settings.name}` })
-
     const tags = shallowRef<{ to: RouteLocation }[]>([])
     const scrollPaneRef = shallowRef<any>()
+
+    const selectedTag = ref<any>()
+    let show = ref(false)
 
     const moveToCurrentTag = async () => {
       await nextTick()
@@ -31,36 +32,42 @@ export default defineComponent({
 
     const toLastView = () => {
       const latestView = tagsViewInstance.visitedViews.slice(-1)[0]
-      if (latestView) { router.push(latestView) } else { router.push('/') }
+      if (latestView) {
+        router.push(latestView)
+      } else {
+        router.push('/')
+      }
     }
 
     const isActive = $computed(() =>
       (tag: RouteLocation) => tag.path === route.path)
 
     const closeTag = (view = route) => {
+      show.value = false
       tagsViewInstance.dropView(view)
+      if (isActive(view)) {
+        toLastView()
+      }
+    }
 
-      if (isActive(view)) { toLastView() }
+    const reflash = (view = route) => {
+      show.value = false
+      tagsViewInstance.pushRoute(view)
     }
 
     const closeOthersTags = (view = route) => {
+      show.value = false
       tagsViewInstance.delOthersViews(view)
-      if (view !== route) { router.push(view) }
+      if (view !== route) {
+        router.push(view)
+      }
     }
 
     const closeAllTags = () => {
+      show.value = false
       tagsViewInstance.delOthersViews()
-
       toLastView()
     }
-
-    const selectedTag = $ref<any>()
-    let show = $ref(false)
-
-    const menuRef = ref()
-    onClickOutside(menuRef, (event: any) => {
-      if (event.type === 'click') { selectedTag && show && (show = false) }
-    })
 
     watch(() => route.fullPath, () => {
       tagsViewInstance.addView(route)
@@ -105,12 +112,16 @@ export default defineComponent({
                       class={ `z-9 h-24px shrink-0 tab-item ${isActive(item) ? 'active' : ''}` }
                       onClick={ () => tagsViewInstance.pushRoute(item) }
                       key={ item?.fullPath }
+                      onContextmenu={ withModifiers(() => {
+                        selectedTag.value = tags.value[index]
+                        show.value = true
+                      }, ['prevent']) }
                     >
                       <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
                       <div v-show={ isActive(item) } class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-[var(--el-color-primary)]" />
                       <div class="px-6px">{ item?.meta?.title }</div>
                       <span v-show={ isActive(item) } class="text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
-                        <i class="i-iconoir-cancel" />
+                        <i onClick={ () => closeTag(selectedTag.value?.to) } class="i-iconoir-cancel" />
                       </span>
                     </div>
                   )
@@ -118,8 +129,34 @@ export default defineComponent({
               }
             </div>
           </ScrollPane>
+          <div v-show={ show.value }>
+            <ElPopover
+              v-model={[show.value, 'visible']}
+              trigger="click"
+              popper-options={{ modifiers: [{ name: 'offset', options: { offset: [0, 0] } }] }}
+              popper-class="min-w-[unset]! w-auto!"
+              virtual-ref={ selectedTag.value }
+              virtual-triggering
+            >
+              <ul class="v-dropdown">
+                <li onClick={ () => reflash(selectedTag.value?.to) }>
+                  刷新
+                </li>
+                <li onClick={ () => closeTag(selectedTag.value?.to) }>
+                  关闭
+                </li>
+                <li onClick={ () => closeOthersTags(selectedTag.value?.to) }>
+                  关闭其他
+                </li>
+                <li onClick={ () => closeAllTags() }>
+                  关闭全部
+                </li>
+              </ul>
+            </ElPopover>
+          </div>
         </div>
       )
     }
   }
 })
+
