@@ -12,13 +12,13 @@
 }
 
 .tab-item::before {
-  @apply -left-5;
+  @apply -left-5 duration-300;
 
   clip-path: inset(50% -10px 0 50%);
 }
 
 .tab-item::after {
-  @apply -right-5;
+  @apply -right-5 duration-300;
 
   clip-path: inset(50% 50% 0 -10px);
 }
