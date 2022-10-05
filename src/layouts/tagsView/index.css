@@ -33,6 +33,11 @@
   border-bottom-right-radius: 6px;
 }
 
+.tab-item:hover .icon-close,
+.dark .tab-item:hover .icon-close {
+  @apply opacity-100;
+}
+
 .tab-item:first-child .split {
   @apply hidden;
 }
