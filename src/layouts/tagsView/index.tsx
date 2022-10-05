@@ -73,10 +73,10 @@ export default defineComponent({
       tagsViewInstance.pushRoute(item)
     }
 
-    watch(() => route.fullPath, () => {
-      tagsViewInstance.addView(route)
-      moveToCurrentTag()
-    }, { immediate: true })
+    // watch(() => route.fullPath, () => {
+    //   tagsViewInstance.addView(route)
+    //   moveToCurrentTag()
+    // }, { immediate: true })
 
     onMounted(() => {
       Sortable.create(document.querySelector('.scrollContent')!,
