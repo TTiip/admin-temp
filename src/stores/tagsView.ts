@@ -4,7 +4,6 @@ import type { RouteLocationRaw } from 'vue-router'
 const useTagsViewStore = defineStore('tagsView', () => {
   const router = useRouter()
   const route = useRoute()
-  const cachedViews = ref<any[]>([])
   const visitedViews = ref(JSON.parse(localStorage.getItem('visitedViews') || '[]'))
 
   const methodResolve = (view: RouteLocationRaw) => {
@@ -34,16 +33,6 @@ const useTagsViewStore = defineStore('tagsView', () => {
     }
   }
 
-  const addCachedView = (view: RouteLocationRaw) => {
-    const route = router.resolve(view)
-    if (route.meta.permission === false || !route.meta.title) {
-      return false
-    }
-    if (route?.name && !cachedViews.value.includes(route.name!)) {
-      cachedViews.value.push(route?.name)
-    }
-  }
-
   const dropVisitedView = (view: RouteLocationRaw) => {
     const index = visitedViews.value.findIndex((v: any) => v.path === router.resolve(view).path)
     if (index >= 0) {
@@ -51,19 +40,10 @@ const useTagsViewStore = defineStore('tagsView', () => {
     }
   }
 
-  const dropCachedView = (view: RouteLocationRaw) => {
-    const index = cachedViews.value.findIndex((v: any) => v.path === router.resolve(view).path)
-    if (index >= 0) {
-      cachedViews.value.splice(index, 1)
-    }
-  }
-
   const delOthersViews = (view?: RouteLocationRaw) => {
     const route = router.resolve(view || '/')
     visitedViews.value = visitedViews.value.filter((v: any) => v.path === route?.path)
-    cachedViews.value = cachedViews.value.filter((v: any) => v !== route?.name)
     console.log('visitedViews.value', visitedViews.value)
-    console.log('cachedViews.value', cachedViews.value)
   }
   const pushRoute = async (view: RouteLocationRaw) => {
     const coverRoute: any = methodResolve(view)
@@ -76,7 +56,6 @@ const useTagsViewStore = defineStore('tagsView', () => {
   const dropView = (view?: RouteLocationRaw) => {
     view = view || route
     dropVisitedView(view)
-    dropCachedView(view)
   }
 
   const back = (routee?: RouteLocationRaw) => {
@@ -90,17 +69,13 @@ const useTagsViewStore = defineStore('tagsView', () => {
 
   const addView = (view: RouteLocationRaw) => {
     addVisitedView(view)
-    addCachedView(view)
   }
 
   return {
-    cachedViews,
     visitedViews,
     methodResolve,
     addVisitedView,
-    addCachedView,
     dropVisitedView,
-    dropCachedView,
     delOthersViews,
     pushRoute,
     dropView,

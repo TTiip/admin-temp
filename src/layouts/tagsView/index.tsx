@@ -73,10 +73,10 @@ export default defineComponent({
       tagsViewInstance.pushRoute(item)
     }
 
-    // watch(() => route.fullPath, () => {
-    //   tagsViewInstance.addView(route)
-    //   moveToCurrentTag()
-    // }, { immediate: true })
+    watch(() => route.fullPath, () => {
+      tagsViewInstance.addView(route)
+      moveToCurrentTag()
+    }, { immediate: true })
 
     onMounted(() => {
       Sortable.create(document.querySelector('.scrollContent')!,
@@ -125,7 +125,7 @@ export default defineComponent({
                       <div v-show={ isActive(item) } class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-[var(--el-color-primary)]" />
                       <div class="px-6px">{ item?.meta?.title }</div>
                       <span v-show={ isActive(item) } class="text-xs flex items-center hover:bg-gray-300 group-hover:opacity-100 rounded-full duration-300">
-                        <i onClick={ () => closeTag(selectedTag.value?.to) } class="i-iconoir-cancel" />
+                        <i onClick={ withModifiers(() => closeTag(selectedTag.value?.to), ['stop']) } class="i-iconoir-cancel" />
                       </span>
                     </div>
                   )
