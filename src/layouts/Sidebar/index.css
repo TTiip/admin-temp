@@ -1,8 +1,0 @@
-.el-menu-item.is-active {
-  background: linear-gradient(to left, var(--el-color-primary) 1%, transparent 2%);
-  background-color: rgba(var(--el-color-primary-rgb), 5%);
-}
-
-.el-menu:not(.el-menu--collapse) {
-  width: 240px;
-}
