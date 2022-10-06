@@ -1,5 +1,3 @@
-// tagsViewStore
-
 const getTagsViewInstance = () => {
   const tagsViewStore = useTagsViewStore()
 
@@ -16,6 +14,13 @@ const getTagsViewInstance = () => {
   return tagsViewStore
 }
 
+const getUserInstance = () => {
+  const userStore = useUserStore()
+
+  return userStore
+}
+
 export {
-  getTagsViewInstance
+  getTagsViewInstance,
+  getUserInstance
 }
