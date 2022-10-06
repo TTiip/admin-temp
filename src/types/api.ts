@@ -1,49 +1,38 @@
-// interface Common {
-//   code?: number
-//   hasMore?: boolean
-// }
-// interface GetLyric extends Common {
-//   sgc: boolean
-//   sfy: boolean
-//   qfy: boolean
-//   lrc: {
-//     version: number
-//     lyric: string
-//   }
-//   klyric: {
-//     version: number
-//     lyric: string
-//   }
-//   tlyric: {
-//     version: number
-//     lyric: string
-//   }
-// }
-
 interface Common {
-  code?: number
-  hasMore?: boolean
+  code: 0 | 200
+  message: string | null | undefined
 }
 
-type GetLyric = Common & {
-  sgc: boolean
-  sfy: boolean
-  qfy: boolean
-  lrc: {
-    version: number
-    lyric: string
+interface UserInfoDataItem {
+  id: string
+  username: string
+  name: string
+  email: string
+  sex: number
+  status: boolean
+  index: number
+  roles: {
+    id: string
+    name: string
+    status: boolean
+    index: number
+    permissions: string[]
+  }[]
+  department: {
+    id: string
+    name: string
+    remark: string
+    parentId: string
+    status: boolean
+    hasChildren: boolean
+    path: string[]
   }
-  klyric: {
-    version: number
-    lyric: string
-  }
-  tlyric: {
-    version: number
-    lyric: string
-  }
+  permissions: string[]
 }
 
 // interface
-export {
-  GetLyric
+export type {
+  Common,
+  UserInfoDataItem
+
 }

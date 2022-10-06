@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { RouteRecordRaw } from 'vue-router'
+import type { UserInfoDataItem } from '~/types'
 
 function hasPermission (route: RouteRecordRaw, permissions: any[] = []) {
   if (!route.meta?.permission) {
@@ -28,8 +29,27 @@ function filterAsyncRoutes (routes: RouteRecordRaw[], permissions: any) {
 }
 
 export const useUserStore = defineStore('user', () => {
-  const data = ref(0)
+  const userInfo = ref<UserInfoDataItem | null>(null)
+
+  function setUserInfo (userInfoData: any) {
+    userInfo.value = userInfoData
+  }
+
+  async function getUserInfo () {
+    if (!userInfo.value) {
+      const res = await axios({
+        url: 'getUserInfo',
+        method: 'GET'
+      })
+
+      userInfo.value = res.data
+    }
+    return userInfo.value
+  }
+
   return {
-    data
+    userInfo,
+    setUserInfo,
+    getUserInfo
   }
 })

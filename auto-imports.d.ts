@@ -37,6 +37,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getTagsViewInstance: typeof import('./src/composables/pinia')['getTagsViewInstance']
+  const getUserInstance: typeof import('./src/composables/pinia')['getUserInstance']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -303,6 +304,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getTagsViewInstance: UnwrapRef<typeof import('./src/composables/pinia')['getTagsViewInstance']>
+    readonly getUserInstance: UnwrapRef<typeof import('./src/composables/pinia')['getUserInstance']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>

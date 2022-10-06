@@ -148,5 +148,14 @@ export default defineConfig({
   // https://github.com/vitest-dev/vitest
   test: {
     environment: 'jsdom'
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://mock.apifox.cn/m1/1643115-0-default',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
+      }
+    }
   }
 })

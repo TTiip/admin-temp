@@ -1,5 +1,6 @@
 import type { AxiosInstance, AxiosInterceptorManager, AxiosPromise } from 'axios'
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios'
+import { ElMessage } from 'element-plus'
 import type { apiKeyDataType, apiKeyType } from '~/api'
 import apiList from '~/api'
 
@@ -97,8 +98,14 @@ instance.interceptors.response.use(response => {
 
   const code = response.data.code
   if (code !== 200) {
-    console.log('error', response.data)
+    ElMessage({
+      type: 'error',
+      message: response.data.message,
+      showClose: true,
+      grouping: true
+    })
   }
+
   return response.data
 },
 error => {
@@ -154,7 +161,7 @@ export {
   限制泛型T必须是接口列表（apiKeyType）中的key
   限制obj中的url必须是接口列表中key的某一个
 */
-const httpFunc = <T extends apiKeyType>(options: AxiosRequestConfig & { url: T }) => {
+const httpFunc = <T extends apiKeyType>(options: AxiosRequestConfig & { url: T; method: Method }) => {
   /*
     限制最终的返回数据类型, 通过 Promise 传入范型 限制 resolve 返回值的类型
   */
@@ -165,7 +172,8 @@ const httpFunc = <T extends apiKeyType>(options: AxiosRequestConfig & { url: T }
       data: options.data || {},
       method: options.method || 'GET',
       responseType: options.responseType || 'json',
-      headers: options.headers || {}
+      // 这里使用 apifox 的云端mock功能，自己在 mock 中设置，没有服务器是这样的啦。
+      headers: Object.assign({ apifoxToken: 'l2Roc7eCoWvJ6SfNKQrOqeblTaIyqsg7' }, options.headers)
     }).then((res: any) => {
       resolve(res)
     }).catch(error => {

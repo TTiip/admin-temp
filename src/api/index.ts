@@ -1,14 +1,15 @@
 import type {
-  GetLyric
+  Common,
+  UserInfoDataItem
 } from '~/types'
 
 const apiList = {
-  // 获取歌曲的歌词
-  getLyric: '/lyric'
+  // 获取登录用户信息
+  getUserInfo: '/api/user-info'
 }
 
 export interface apiKeyDataType {
-  getLyric: GetLyric
+  getUserInfo: Common & { data: UserInfoDataItem }
 }
 
 export type apiKeyType = keyof typeof apiList
