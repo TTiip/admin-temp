@@ -28,13 +28,12 @@ export default defineComponent({
     ]
 
     return () => (
-      <>
+      <div {...attrs}>
         <ElPopover
           width="auto"
           v-slots={{
             reference: () => (
               <button
-                {...attrs}
                 class="btn text-18px dark:i-iconoir-half-moon i-iconoir:sun-light"
                 onClick={ () => toggleDark() } />
             )
@@ -53,7 +52,7 @@ export default defineComponent({
             }
           </div>
         </ElPopover>
-      </>
+      </div>
     )
   }
 })

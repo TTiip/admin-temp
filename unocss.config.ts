@@ -65,7 +65,9 @@ export default defineConfig({
       'iconoir:transition-right',
       'iconoir:collapse',
       'iconoir:expand',
-      'i-iconoir-cancel'
+      'i-iconoir-cancel',
+      'i-iconoir-user',
+      'i-iconoir-lock'
     ].map(i => `i-${i}`).join(' ').split(' '),
     ...[
       'blue-500',
