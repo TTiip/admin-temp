@@ -18,7 +18,11 @@ export default defineComponent({
       console.log(res, 'res')
       const loading = ElLoading.service({ fullscreen: true })
       // await user.login({ username: username.value, password: password.value }).finally(() => loading.close())
-      ElMessage.success('登录成功')
+      ElMessage({
+        type: 'success',
+        message: '登录成功',
+        grouping: true
+      })
 
       setTimeout(() => loading.close())
     }
