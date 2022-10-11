@@ -3,7 +3,6 @@
 /**
   <route lang="yaml">
     meta:
-      // title: 文章管理
       permission: true
   </route>
 */

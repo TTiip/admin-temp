@@ -11,7 +11,9 @@ export default defineComponent({
   setup () {
     const isCollapse = ref(false)
     const route = useRoute()
+    const tagsViewInstance = getTagsViewInstance()
     console.log('route.path', route.path)
+    console.log('route', route)
 
     return () => (
       <div class="flex h-screen">
@@ -33,7 +35,7 @@ export default defineComponent({
           <router-view v-slots={{
             default: ({ Component, route }: { Component: any; route: RouteRecordRaw }) => (
               <Transition mode="out-in" name="main" appear={ true }>
-                <KeepAlive>
+                <KeepAlive include={ tagsViewInstance.cachedViews } max={ 20 }>
                   <Component key={ route.path } />
                 </KeepAlive>
               </Transition>

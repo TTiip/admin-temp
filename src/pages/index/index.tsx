@@ -3,7 +3,6 @@
 /**
   <route lang="yaml">
     meta:
-      // title: 首页
       permission: true
   </route>
 */
