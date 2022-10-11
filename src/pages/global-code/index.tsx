@@ -9,7 +9,7 @@
 */
 
 export default defineComponent({
-  name: 'GlobalCode',
+  name: 'GlobalCodeComponent',
   setup () {
     return () => (
       <h1>
