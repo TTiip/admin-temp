@@ -44,49 +44,43 @@ const useTagsViewStore = defineStore('tagsView', () => {
     }
   }
 
-  function dropVisitedView (view: RouteLocationRaw) {
+  function deleteVisitedView (view: RouteLocationRaw) {
     const index = visitedViews.value.findIndex((v: any) => v.path === router.resolve(view).path)
     if (index >= 0) {
       visitedViews.value.splice(index, 1)
     }
   }
 
-  function dropCachedView (view: RouteLocationRaw) {
-    const index = cachedViews.value.findIndex((v: any) => v.path === router.resolve(view).path)
+  function deleteCachedView (view: RouteLocationRaw) {
+    const index = cachedViews.value.findIndex((v: any) => v === router.resolve(view).name)
     if (index >= 0) {
       cachedViews.value.splice(index, 1)
     }
   }
 
-  function delOthersViews (view?: RouteLocationRaw) {
+  function deleteOthersViews (view?: RouteLocationRaw) {
     const route = router.resolve(view || '/')
     visitedViews.value = visitedViews.value.filter((v: any) => v.path === route?.path)
     cachedViews.value = cachedViews.value.filter((v: any) => v !== route?.name)
-    console.log('visitedViews.value', visitedViews.value)
-    console.log('cachedViews.value', cachedViews.value)
   }
 
   async function pushRoute (view: RouteLocationRaw) {
     const coverRoute: any = methodResolve(view)
     if (coverRoute.path === route.path) {
-      return router.push({
-        path: '/redirect',
-        query: {
-          redirect: route.path
-        }
-      })
+      deleteCachedView(view)
+      return router.push('/redirect')
     }
     router.push(view)
   }
 
-  function dropView (view?: RouteLocationRaw) {
+  function deleteView (view?: RouteLocationRaw) {
     view = view || route
-    dropVisitedView(view)
-    dropCachedView(view)
+    deleteVisitedView(view)
+    deleteCachedView(view)
   }
 
   function back (routee?: RouteLocationRaw) {
-    dropView(route)
+    deleteView(route)
     if (routee) {
       return pushRoute(route)
     }
@@ -105,11 +99,11 @@ const useTagsViewStore = defineStore('tagsView', () => {
     methodResolve,
     addVisitedView,
     addCachedView,
-    dropVisitedView,
-    dropCachedView,
-    delOthersViews,
+    deleteVisitedView,
+    deleteCachedView,
+    deleteOthersViews,
     pushRoute,
-    dropView,
+    deleteView,
     back,
     addView
   }

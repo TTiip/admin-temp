@@ -12,8 +12,6 @@ export default defineComponent({
     const isCollapse = ref(false)
     const route = useRoute()
     const tagsViewInstance = getTagsViewInstance()
-    console.log('route.path', route.path)
-    console.log('route', route)
 
     return () => (
       <div class="flex h-screen">

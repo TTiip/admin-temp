@@ -47,7 +47,7 @@ export default defineComponent({
 
     const closeTag = (view = route) => {
       show.value = false
-      tagsViewInstance.dropView(view)
+      tagsViewInstance.deleteView(view)
       if (isActive(view)) {
         toLastView()
       }
@@ -60,7 +60,7 @@ export default defineComponent({
 
     const closeOthersTags = (view = route) => {
       show.value = false
-      tagsViewInstance.delOthersViews(view)
+      tagsViewInstance.deleteOthersViews(view)
       if (view !== route) {
         router.push(view)
       }
@@ -68,7 +68,7 @@ export default defineComponent({
 
     const closeAllTags = () => {
       show.value = false
-      tagsViewInstance.delOthersViews()
+      tagsViewInstance.deleteOthersViews()
       toLastView()
     }
 
@@ -76,9 +76,11 @@ export default defineComponent({
       tagsViewInstance.pushRoute(item)
     }
 
-    watch(() => route.fullPath, () => {
-      tagsViewInstance.addView(route)
-      moveToCurrentTag()
+    watch(() => route.fullPath, (newVal: any) => {
+      if (newVal !== '/redirect') {
+        tagsViewInstance.addView(route)
+        moveToCurrentTag()
+      }
     }, { immediate: true })
 
     onMounted(() => {

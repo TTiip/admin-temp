@@ -10,10 +10,14 @@
 export default defineComponent({
   name: 'index',
   setup () {
+    const str = ref<string>('')
+    function addStr () {
+      str.value += '-'
+    }
     return () => (
       <div>
-        <h1>
-          Index
+        <h1 onClick={ addStr }>
+          Index - { str.value }
         </h1>
       </div>
     )
