@@ -1,7 +1,7 @@
 import type { Fn } from '@vueuse/core'
 
 export default defineComponent({
-  name: 'PlumBlossom',
+  name: 'plum-blossom',
   setup () {
     const r180 = Math.PI
     const r90 = Math.PI / 2

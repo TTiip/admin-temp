@@ -4,7 +4,7 @@ import type { MenuItemType } from '~/types'
 import './index.css'
 
 export default defineComponent({
-  name: 'SideBar',
+  name: 'side-bar',
   props: {
     menuData: {
       type: Array as PropType<MenuItemType[]>,

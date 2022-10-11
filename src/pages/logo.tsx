@@ -5,7 +5,7 @@ import PlumBlossom from '~/components/plumBlossom'
 import ChooseTheme from '~/layouts/navigation/choose-theme'
 
 export default defineComponent({
-  name: 'Logo',
+  name: 'logo',
   setup () {
     const model = reactive({
       username: 'admin',

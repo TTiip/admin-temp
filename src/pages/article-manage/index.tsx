@@ -8,7 +8,7 @@
 */
 
 export default defineComponent({
-  name: 'ArticleManage',
+  name: 'article-manage',
   setup () {
     return () => (
       <h1>

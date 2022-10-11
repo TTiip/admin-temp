@@ -1,5 +1,5 @@
 export default defineComponent({
-  name: '[...all]',
+  name: '404',
   setup () {
     return () => (
       <div class="s-10 bg-box w-300px h-300px">

@@ -9,7 +9,7 @@
 */
 
 export default defineComponent({
-  name: 'Department',
+  name: 'department',
   setup () {
     return () => (
       <div>

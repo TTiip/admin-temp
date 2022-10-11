@@ -9,7 +9,7 @@
 */
 
 export default defineComponent({
-  name: 'UserManage',
+  name: 'user-manage',
   setup () {
     return () => (
       <h1>

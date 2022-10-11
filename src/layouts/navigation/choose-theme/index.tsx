@@ -1,7 +1,7 @@
 import { ElPopover } from 'element-plus'
 
 export default defineComponent({
-  name: 'ChooseTheme',
+  name: 'choose-theme',
   setup () {
     const attrs = useAttrs()
     const hex2rgb = (hex: string) => {

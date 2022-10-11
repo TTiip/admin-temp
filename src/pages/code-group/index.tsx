@@ -9,7 +9,7 @@
 */
 
 export default defineComponent({
-  name: 'CodeGroup',
+  name: 'code-group',
   setup () {
     return () => (
       <h1>

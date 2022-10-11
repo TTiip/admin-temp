@@ -4,7 +4,7 @@ import type { RouteLocation } from 'vue-router'
 import { ElScrollbar } from 'element-plus'
 
 export default defineComponent({
-  name: 'ScrollPane',
+  name: 'scroll-pane',
   props: {
     tagList: {
       type: Array as PropType<any[]>,

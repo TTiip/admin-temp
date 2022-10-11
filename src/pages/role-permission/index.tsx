@@ -9,7 +9,7 @@
 */
 
 export default defineComponent({
-  name: 'RolePermission',
+  name: 'role-permission',
   setup () {
     return () => (
       <h1>

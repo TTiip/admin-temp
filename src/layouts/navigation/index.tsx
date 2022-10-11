@@ -5,7 +5,7 @@ import ChooseTheme from '~/layouts/navigation/choose-theme'
 import './index.css'
 
 export default defineComponent({
-  name: 'Navigation',
+  name: 'navigation',
   props: ['isCollapse'],
   setup (props, { emit }) {
     // const user: any = {}

@@ -7,7 +7,7 @@ import Navigation from '~/layouts/navigation/index'
 import TagsView from '~/layouts/tagsView/index'
 
 export default defineComponent({
-  name: 'Layouts',
+  name: 'layouts',
   setup () {
     const isCollapse = ref(false)
     const route = useRoute()

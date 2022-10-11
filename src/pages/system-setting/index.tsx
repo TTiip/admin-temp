@@ -9,7 +9,7 @@
 */
 
 export default defineComponent({
-  name: 'SystemSetting',
+  name: 'system-setting',
   setup () {
     return () => (
       <h1>

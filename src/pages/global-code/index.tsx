@@ -9,7 +9,7 @@
 */
 
 export default defineComponent({
-  name: 'GlobalCode',
+  name: 'global-code',
   setup () {
     const num = ref(0)
     function addNum () {

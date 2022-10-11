@@ -7,7 +7,7 @@ import ScrollPane from '~/layouts/tagsView/scrollPane'
 import './index.css'
 
 export default defineComponent({
-  name: 'TagsView',
+  name: 'tags-view',
   setup () {
     const route = useRoute()
     const router = useRouter()
