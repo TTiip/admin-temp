@@ -9,12 +9,18 @@
 */
 
 export default defineComponent({
-  name: 'GlobalCodeComponent',
+  name: 'GlobalCode',
   setup () {
+    const num = ref(0)
+    function addNum () {
+      num.value += 1
+    }
     return () => (
-      <h1>
-				GlobalCode
-      </h1>
+      <div>
+        <h1 onClick={ addNum }>
+          GlobalCode: { num.value }
+        </h1>
+      </div>
     )
   }
 })

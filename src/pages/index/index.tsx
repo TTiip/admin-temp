@@ -8,7 +8,7 @@
 */
 
 export default defineComponent({
-  name: 'IndexComponent',
+  name: 'Index',
   setup () {
     return () => (
       <div>
