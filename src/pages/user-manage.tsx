@@ -1,6 +1,7 @@
 /**
   <route lang="yaml">
-    component: ~/layouts/index.tsx
+    redirect: /user-manage
+    component: ~/layouts
     meta:
       title: 系统管理
       showId: true

@@ -1,6 +1,7 @@
 /**
   <route lang="yaml">
-    component: ~/layouts/index.tsx
+    redirect: /global-code
+    component: ~/layouts
     meta:
       title: 数据字典
       showId: true

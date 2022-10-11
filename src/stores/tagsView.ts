@@ -7,7 +7,7 @@ const useTagsViewStore = defineStore('tagsView', () => {
   const cachedViews = ref<any[]>([])
   const visitedViews = ref(JSON.parse(localStorage.getItem('visitedViews') || '[]'))
 
-  const methodResolve = (view: RouteLocationRaw) => {
+  function methodResolve (view: RouteLocationRaw) {
     try {
       const route = router.resolve(view)
       return visitedViews.value.find((i: any) => i.path === route.path) || route
@@ -21,7 +21,7 @@ const useTagsViewStore = defineStore('tagsView', () => {
     }
   }
 
-  const addVisitedView = (view: RouteLocationRaw) => {
+  function addVisitedView (view: RouteLocationRaw) {
     const route = router.resolve(view)
     if (route.meta.permission === false || !route.meta.title) {
       return false
@@ -34,7 +34,7 @@ const useTagsViewStore = defineStore('tagsView', () => {
     }
   }
 
-  const addCachedView = (view: RouteLocationRaw) => {
+  function addCachedView (view: RouteLocationRaw) {
     const route = router.resolve(view)
     if (route.meta.permission === false || !route.meta.title) {
       return false
@@ -44,42 +44,48 @@ const useTagsViewStore = defineStore('tagsView', () => {
     }
   }
 
-  const dropVisitedView = (view: RouteLocationRaw) => {
+  function dropVisitedView (view: RouteLocationRaw) {
     const index = visitedViews.value.findIndex((v: any) => v.path === router.resolve(view).path)
     if (index >= 0) {
       visitedViews.value.splice(index, 1)
     }
   }
 
-  const dropCachedView = (view: RouteLocationRaw) => {
+  function dropCachedView (view: RouteLocationRaw) {
     const index = cachedViews.value.findIndex((v: any) => v.path === router.resolve(view).path)
     if (index >= 0) {
       cachedViews.value.splice(index, 1)
     }
   }
 
-  const delOthersViews = (view?: RouteLocationRaw) => {
+  function delOthersViews (view?: RouteLocationRaw) {
     const route = router.resolve(view || '/')
     visitedViews.value = visitedViews.value.filter((v: any) => v.path === route?.path)
     cachedViews.value = cachedViews.value.filter((v: any) => v !== route?.name)
     console.log('visitedViews.value', visitedViews.value)
     console.log('cachedViews.value', cachedViews.value)
   }
-  const pushRoute = async (view: RouteLocationRaw) => {
+
+  async function pushRoute (view: RouteLocationRaw) {
     const coverRoute: any = methodResolve(view)
     if (coverRoute.path === route.path) {
-      return false
+      return router.push({
+        path: '/redirect',
+        query: {
+          redirect: route.path
+        }
+      })
     }
     router.push(view)
   }
 
-  const dropView = (view?: RouteLocationRaw) => {
+  function dropView (view?: RouteLocationRaw) {
     view = view || route
     dropVisitedView(view)
     dropCachedView(view)
   }
 
-  const back = (routee?: RouteLocationRaw) => {
+  function back (routee?: RouteLocationRaw) {
     dropView(route)
     if (routee) {
       return pushRoute(route)
@@ -88,7 +94,7 @@ const useTagsViewStore = defineStore('tagsView', () => {
     router.back()
   }
 
-  const addView = (view: RouteLocationRaw) => {
+  function addView (view: RouteLocationRaw) {
     addVisitedView(view)
     addCachedView(view)
   }

@@ -1,6 +1,7 @@
 /**
   <route lang="yaml">
-    component: ~/layouts/index.tsx
+    redirect: /
+    component: ~/layouts
     meta:
       title: 首页
       showId: true
