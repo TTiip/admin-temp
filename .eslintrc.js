@@ -1,6 +1,8 @@
 module.exports = {
   extends: ['@antfu'],
   rules: {
+    // 强制组件名使用 index-component 这种，兼容缓存逻辑(为了偷懒～)
+    'vue/component-definition-name-casing': [2, 'kebab-case'],
     // 关闭函数一定要写返回值
     'array-callback-return': 'off',
     // 关闭 防止使用未知的DOM属性(目前就是解决 class 报错 需要强制使用 className)
