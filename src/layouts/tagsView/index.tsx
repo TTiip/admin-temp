@@ -84,9 +84,10 @@ export default defineComponent({
     }, { immediate: true })
 
     onMounted(() => {
+      // 这里需要特别注意，sortable 实例元素下面的第一层子元素，不能存在定位(relative属性)，其他两个没试过。
       Sortable.create(document.querySelector('.scrollContent')!,
         {
-          animation: 150,
+          animation: 350,
           onEnd (evt: SortableEvent) {
             // 拖拽以后改变 strore 🍍 中的数据，出发 $subscribe 方法持久化存储。
             if (evt.oldIndex !== evt.newIndex) {
@@ -107,25 +108,24 @@ export default defineComponent({
             ref={ scrollPaneRef }
             tagList={tags.value}
           >
-            <div class="flex  scrollContent pl-10px">
+            <div class="flex scrollContent pl-10px">
               {
                 tagsViewInstance.visitedViews.map((item: any, index: number) => {
-                  return (
-                    <div
-                      ref={(val: any) => {
-                        if (val) {
-                          val.to = item
-                          tags.value[index] = val
-                        }
-                      }}
-                      class={ `z-9 h-24px shrink-0 tab-item ${isActive(item) ? 'active' : ''}` }
-                      onClick={ () => tagItemClick(item) }
-                      key={ item?.fullPath }
-                      onContextmenu={ withModifiers(() => {
-                        selectedTag.value = tags.value[index]
-                        show.value = true
-                      }, ['prevent']) }
-                    >
+                  return (<div
+                    ref={(val: any) => {
+                      if (val) {
+                        val.to = item
+                        tags.value[index] = val
+                      }
+                    }}
+                    onClick={ () => tagItemClick(item) }
+                    key={ item?.fullPath }
+                    onContextmenu={ withModifiers(() => {
+                      selectedTag.value = tags.value[index]
+                      show.value = true
+                    }, ['prevent']) }
+                  >
+                    <div class={ `z-9 h-24px shrink-0 tab-item ${isActive(item) ? 'active' : ''}` }>
                       <span class="split absolute left-[-6px] z-[-1] text-gray-400">｜</span>
                       <div v-show={ isActive(item) } class="absolute left-3 h-2 w-2 rounded-full mr-1.5 bg-[var(--el-color-primary)]" />
                       <div class="px-6px">{ item?.meta?.title }</div>
@@ -133,6 +133,7 @@ export default defineComponent({
                         <i onClick={ withModifiers(() => closeTag(item), ['stop']) } class="i-iconoir-cancel" />
                       </span>
                     </div>
+                  </div>
                   )
                 })
               }
