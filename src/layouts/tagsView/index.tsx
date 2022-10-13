@@ -144,7 +144,7 @@ export default defineComponent({
               ? (<ElPopover
                 v-model={[show.value, 'visible']}
                 trigger="click"
-                popper-options={{ modifiers: [{ name: 'offset', options: { offset: [0, 0] } }] }}
+                popper-options={{ modifiers: [{ name: 'offset', options: { offset: [0, 6] } }] }}
                 popper-class="min-w-[unset]! w-auto!"
                 virtual-ref={ selectedTag.value }
                 virtual-triggering
