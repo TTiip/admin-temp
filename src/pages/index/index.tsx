@@ -7,6 +7,8 @@
   </route>
 */
 
+import Review from './review'
+
 export default defineComponent({
   name: 'index',
   setup () {
@@ -19,6 +21,7 @@ export default defineComponent({
         <h1 onClick={ addNum }>
           Index - { num.value }
         </h1>
+        <Review />
       </div>
     )
   }
