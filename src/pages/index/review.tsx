@@ -126,7 +126,7 @@ export default defineComponent({
       }
     }
 
-    function coverData (maps: any, newData: any, oldData: any) {
+    function coverData (maps: any, newData: any, oldData: any, isArr = false) {
       Object.keys(maps).map(key => {
         if (maps[key].type === 'object') {
           coverData(maps[key].keyMaps, newData[key], oldData[key])
@@ -140,11 +140,16 @@ export default defineComponent({
           console.log(newData[key], 'newData[key]')
           console.log(oldData[key], 'oldData[key]')
           console.log('====================')
-          coverData(maps[key].keyMaps, newData[key], oldData[key])
+          coverData(maps[key].keyMaps, newData[key], oldData[key], true)
         } else {
           console.log(key, 'key')
-          maps[key].newVal = newData[key]
-          maps[key].oldVal = oldData[key]
+          if (isArr) {
+            maps[key].newVal = newData
+            maps[key].oldVal = oldData
+          } else {
+            maps[key].newVal = newData[key]
+            maps[key].oldVal = oldData[key]
+          }
         }
       })
     }
